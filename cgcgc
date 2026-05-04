@@ -1,0 +1,13 @@
+<section className="py-24 bg-[#F9F7F3] overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 animate-fade-rise">
+            <h2 className="text-4xl md:text-5xl font-serif text-[#1a241a] mb-4">Master Sustainability</h2>
+            <div className="w-24 h-1 bg-[#4caf50] mx-auto rounded-full mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto font-sans">
+              Join thousands of eco-conscious leaders in our flagship restoration program. 
+              Learn the secrets of regenerative design and carbon-negative living.
+            </p>
+          </div>
+          <CourseCard course={SAMPLE_COURSE} />
+        </div>
+      </section>
