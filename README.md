@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sapling Seeds - Full Stack Setup
 
 This is a monorepo containing three main parts:
@@ -268,3 +269,6 @@ For issues or questions, refer to:
 - [Express.js Documentation](https://expressjs.com/)
 - [Mongoose Documentation](https://mongoosejs.com/)
 - [React Documentation](https://react.dev/)
+=======
+"# sapling-seeds" 
+>>>>>>> 8bc0e51686a2e8b9f31edb4d44d41e59075653e0
