@@ -1,0 +1,35 @@
+/* Enforce no horizontal scroll globally on mobile */
+html,
+body {
+  overflow-x: clip !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-heading: #303130;
+  --color-text: #303130;
+  --color-accent: #303130;
+}
+
+h1, h2, h3, h4, h5, h6,
+.hero-content__headline,
+.premium-about-title,
+.premium-mission-title,
+.ch-intro-title,
+.ch-card-title,
+.dyk-heading,
+.clients-title,
+.ts-title,
+.section-title,
+[class*="title"],
+[class*="heading"] {
+  color: #303130 !important;
+}
+
+body {
+  background-color: #d9cab1;
+  color: #303130;
+  /* Default beige/cream */
+}

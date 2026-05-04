@@ -1,0 +1,138 @@
+.features-banner-wrapper {
+  padding: 60px 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Removed overflow: hidden to allow the high falling animation to be visible */
+}
+
+.features-banner-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.feature-pill {
+  padding: 15px 30px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 260px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.feature-pill:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.feature-icon-box {
+  background: rgba(255, 255, 255, 0.3);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.feature-text-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.feature-subtitle {
+  font-family: 'Patrick Hand', cursive;
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 2px 0 0 0;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+/* Color Palette - Matching User Reference precisely */
+.pill-green {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.pill-blue {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.pill-yellow {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.pill-purple {
+  background-color: #e2d9f3;
+  color: #512da8;
+}
+
+.pill-pink {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .features-banner-container {
+    gap: 15px;
+  }
+  .feature-pill {
+    min-width: 240px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-banner-wrapper {
+    padding: 40px 15px;
+  }
+  .feature-pill {
+    min-width: calc(50% - 15px); /* Two columns */
+    justify-content: flex-start;
+    padding: 12px 15px;
+    gap: 10px;
+  }
+  .feature-icon-box {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+  .feature-title {
+    font-size: 0.9rem;
+  }
+  .feature-subtitle {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .feature-pill {
+    min-width: 100%; /* Back to one column on very small screens */
+  }
+}
+
+

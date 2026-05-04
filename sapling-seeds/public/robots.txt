@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block non-public pages from indexing
+Disallow: /login
+Disallow: /cart
+Disallow: /profile
+Disallow: /orders
+
+Sitemap: https://www.saplingandseeds.com/sitemap.xml

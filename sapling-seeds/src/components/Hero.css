@@ -1,0 +1,493 @@
+/* ═══════════════════════════════════════════════════════════════════
+   SAPLING & SEEDS  —  REJOUICE-INSPIRED CINEMATIC HERO
+   ─────────────────────────────────────────────────────────────────
+   Palette   : #F9F7F3 (travertine) · #1A241A (forest green)
+   Fonts     : Playfair Display (serif) · DM Sans (sans)
+   Technique : sticky scroll track · top/right/bottom/left expansion
+═══════════════════════════════════════════════════════════════════ */
+
+/* Fonts loaded globally in index.html */
+/* ── SCROLL TRACK ─────────────────────────────────────────────────── */
+.hero-track {
+  position: relative;
+  width: 100%;
+  height: 300vh;
+  background: #FFFFFF;
+}
+
+/* ── STICKY PANEL ─────────────────────────────────────────────────── */
+.hero-pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MASSIVE SPLIT TYPOGRAPHY
+   "sapling" anchored top-half  /  "& seeds" anchored bottom-half
+   z-index 3 → text sits BEHIND the card (card z-index 8)
+   Text at ~19 vw bleeds ~7 vw off each side — pure Rejouice feel
+═══════════════════════════════════════════════════════════════════ */
+.hero-title {
+  position: absolute;
+  top: 5vh; /* Push much closer to the top left */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 2vw;
+  overflow: visible;
+  z-index: 15;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-logo-container {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.logo {
+  width: 550px;
+  max-width: 90vw;
+  height: auto;
+  object-fit: contain;
+}
+
+.tagline {
+  font-size: clamp(10px, 2vw, 16px);
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #2e4431;
+  text-transform: uppercase;
+  z-index: 20;
+  white-space: nowrap;
+
+  /* Use relative positioning for better responsiveness */
+  margin-left: 58%; 
+  margin-top: -12%;
+}
+
+@media (max-width: 768px) {
+  .tagline {
+    margin-left: 45%;
+    margin-top: -15%;
+  }
+}
+
+@media (max-width: 480px) {
+  .tagline {
+    margin-left: 35%;
+    margin-top: -20%;
+  }
+}
+
+
+.hero-title--center {
+  height: auto;
+}
+
+.hero-title span {
+  display: block;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(60px, 11vw, 240px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #2E7D32;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   IMAGE CARD
+   Absolutely positioned with top/right/bottom/left (Framer Motion).
+   Initial inset 29% V / 25% H  →  landscape ~50 vw × ~42 vh card
+   Expands to 0% (full screen) on scroll.
+   z-index 8 → always in front of titles
+═══════════════════════════════════════════════════════════════════ */
+.hero-card {
+  position: absolute;
+  overflow: hidden;
+  z-index: 8;
+  /* Visible shadow while card is small — scales away as it expands */
+  box-shadow:
+    0 4px 16px rgba(26, 36, 26, 0.10),
+    0 24px 64px rgba(26, 36, 26, 0.18),
+    0 0 0 1px rgba(26, 36, 26, 0.06);
+  will-change: top, right, bottom, left, border-radius;
+  /* Warm fallback colour while image loads */
+  background: #3b4f3b;
+  margin-top: 150px;
+}
+@media (max-width: 768px) {
+  .hero-card {
+    margin-top: 220px !important;
+  }
+}
+
+.hero-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  /* Slightly warm, premium feel */
+  filter: saturate(1.08) brightness(1.02);
+}
+
+/* Permanent inner vignette — gives card depth at small size */
+.hero-card__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at center,
+      transparent 45%,
+      rgba(10, 18, 10, 0.30) 100%);
+  pointer-events: none;
+}
+
+/* Small floating label — visible at initial card size, fades on expand */
+.hero-card__label {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: rgba(249, 247, 243, 0.15);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(249, 247, 243, 0.22);
+  border-radius: 100px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(249, 247, 243, 0.90);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-card__label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a8d4a0;
+  flex-shrink: 0;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.75);
+  }
+}
+
+/* Dark editorial overlay — fades in post-expansion */
+.hero-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to top,
+      rgba(4, 10, 4, 0.92) 0%,
+      rgba(6, 14, 6, 0.48) 38%,
+      rgba(6, 14, 6, 0.10) 62%,
+      transparent 80%),
+    linear-gradient(to bottom,
+      rgba(4, 10, 4, 0.30) 0%,
+      transparent 25%);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BOTTOM-EDGE TAGLINES  (visible on initial load, below the card)
+═══════════════════════════════════════════════════════════════════ */
+.hero-taglines {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-taglines span {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: clamp(0.52rem, 0.72vw, 0.68rem);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(26, 36, 26, 0.55);
+}
+
+.hero-taglines__divider {
+  color: rgba(26, 36, 26, 0.28) !important;
+  letter-spacing: 0 !important;
+}
+.animate-fade-rise-delay-2{
+  top: 350px;
+}
+/* ═══════════════════════════════════════════════════════════════════
+   NARRATIVE CONTENT + GLASSMORPHIC CTA
+   z-index 20 — above everything. Slides in post-scroll (45–72%).
+═══════════════════════════════════════════════════════════════════ */
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 10vh;
+  z-index: 20;
+  pointer-events: none;
+  gap: 16px;
+}
+
+.hero-content__eyebrow {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: clamp(0.48rem, 0.76vw, 0.70rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(249, 247, 243, 0.45);
+  margin: 0;
+}
+
+.hero-content__headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 4.8vw, 5.6rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  color: #F9F7F3;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 32px rgba(0, 0, 0, 0.35);
+}
+
+.hero-content__headline em {
+  display: block;
+  font-weight: 300;
+  color: rgba(200, 230, 200, 0.88);
+}
+
+/* Glass pill wrapper */
+.hero-content__glass {
+  pointer-events: all;
+  padding: 8px 10px;
+  background: rgba(249, 247, 243, 0.09);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(249, 247, 243, 0.17);
+  border-radius: 100px;
+  margin-top: 10px;
+}
+
+.hero-content__cta {
+  display: inline-block;
+  padding: 18px 56px;
+  background: #F9F7F3;
+  color: #1A241A;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.64rem, 0.82vw, 0.80rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition:
+    background 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-content__cta:hover {
+  background: #c8a84b;
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(200, 168, 75, 0.38), 0 4px 12px rgba(0, 0, 0, 0.20);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CORNER LABELS (post-scroll)
+═══════════════════════════════════════════════════════════════════ */
+.hero-corners {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  width: 100%;
+  padding: 0 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.hero-corners__item {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(249, 247, 243, 0.55);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-corners__item--left::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: rgba(249, 247, 243, 0.30);
+  flex-shrink: 0;
+}
+
+.hero-corners__item--right::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: rgba(249, 247, 243, 0.30);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCROLL INDICATOR
+═══════════════════════════════════════════════════════════════════ */
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.hero-scroll span {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.54rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(26, 36, 26, 0.60);
+}
+
+.hero-scroll__line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, #1A241A, transparent);
+  transform-origin: top;
+  animation: scrollDrop 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.8s;
+}
+
+@keyframes scrollDrop {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+    transform-origin: top;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+    transform-origin: bottom;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .hero-title span {
+    font-size: clamp(60px, 18vw, 190px);
+  }
+
+  .hero-content__headline {
+    font-size: clamp(1.6rem, 5.5vw, 3.2rem);
+  }
+
+  .hero-corners {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title span {
+    font-size: clamp(52px, 19vw, 120px);
+    letter-spacing: -0.05em;
+  }
+
+  .hero-title--top {
+    height: 28vh;
+  }
+
+  .hero-title--bottom {
+    height: 28vh;
+  }
+
+  .hero-content__headline {
+    font-size: clamp(1.5rem, 6.5vw, 2.4rem);
+  }
+
+  .hero-content__eyebrow {
+    display: none;
+  }
+
+  .hero-taglines {
+    display: none;
+  }
+
+  .hero-corners {
+    display: none;
+  }
+
+  .hero-content {
+    padding-bottom: 8vh !important;
+  }
+
+  .hero-content__cta {
+    padding: 14px 32px;
+  }
+
+  .hero-card__label {
+    bottom: 12px;
+    left: 12px;
+    font-size: 0.56rem;
+  }
+}

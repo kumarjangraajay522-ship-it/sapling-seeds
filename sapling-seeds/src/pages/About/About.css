@@ -1,0 +1,233 @@
+/* ===== ABOUT PAGE — ANIMATED WAVE/SMOKE BACKGROUND ===== */
+
+.about-page {
+  position: relative;
+  overflow: hidden;
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding-top: 100px;
+  }
+}
+
+/* ---- Full-page wave canvas container ---- */
+.about-wave-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ---- Smoke / Wave Blobs in the site's earthy warm palette ---- */
+.wave-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Blob 1 — warm light tan, top-left sweep */
+.wb1 {
+  width: 900px;
+  height: 600px;
+  top: -10%;
+  left: -20%;
+  background: radial-gradient(ellipse at center,
+      rgba(210, 185, 148, 0.70) 0%,
+      rgba(167, 142, 109, 0.0) 70%);
+  animation: waveDrift1 14s ease-in-out infinite;
+}
+
+/* Blob 2 — slightly darker earth tone, right side */
+.wb2 {
+  width: 750px;
+  height: 550px;
+  top: 20%;
+  right: -15%;
+  background: radial-gradient(ellipse at center,
+      rgba(139, 112, 80, 0.55) 0%,
+      rgba(167, 142, 109, 0.0) 70%);
+  animation: waveDrift2 18s ease-in-out infinite;
+}
+
+/* Blob 3 — golden-olive accent, mid diagonal */
+.wb3 {
+  width: 800px;
+  height: 480px;
+  top: 40%;
+  left: 15%;
+  background: radial-gradient(ellipse at center,
+      rgba(195, 168, 120, 0.55) 0%,
+      rgba(167, 142, 109, 0.0) 65%);
+  animation: waveDrift3 20s ease-in-out infinite;
+}
+
+/* Blob 4 — warm sand, bottom-right */
+.wb4 {
+  width: 1000px;
+  height: 500px;
+  bottom: -10%;
+  right: -10%;
+  background: radial-gradient(ellipse at center,
+      rgba(220, 198, 160, 0.60) 0%,
+      rgba(167, 142, 109, 0.0) 70%);
+  animation: waveDrift4 16s ease-in-out infinite;
+}
+
+/* Blob 5 — light warm highlight, center */
+.wb5 {
+  width: 500px;
+  height: 400px;
+  top: 55%;
+  left: 35%;
+  background: radial-gradient(ellipse at center,
+      rgba(230, 210, 175, 0.45) 0%,
+      rgba(167, 142, 109, 0.0) 60%);
+  animation: waveDrift5 22s ease-in-out infinite;
+}
+
+/* ---- Keyframe animations ---- */
+
+@keyframes waveDrift1 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: translate(130px, 90px) rotate(8deg);
+  }
+
+  85% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+@keyframes waveDrift2 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  20% {
+    opacity: 0.80;
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: translate(-110px, 130px) rotate(-6deg);
+  }
+
+  80% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+@keyframes waveDrift3 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  25% {
+    opacity: 0.70;
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: translate(90px, -110px) rotate(12deg);
+  }
+
+  75% {
+    opacity: 0.65;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+@keyframes waveDrift4 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  20% {
+    opacity: 0.75;
+  }
+
+  55% {
+    opacity: 0.60;
+    transform: translate(-90px, -100px) rotate(-10deg);
+  }
+
+  80% {
+    opacity: 0.70;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+@keyframes waveDrift5 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  30% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 0.40;
+    transform: translate(-70px, 80px) rotate(5deg);
+  }
+
+  70% {
+    opacity: 0.50;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+/* ---- Child sections stay transparent so wave bg shows through ---- */
+.about-page .premium-about-container,
+.about-page .premium-story-container {
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+.about-page .premium-about-container::before,
+.about-page .premium-about-container::after,
+.about-page .premium-story-container::before,
+.about-page .premium-story-container::after {
+  display: none;
+}
