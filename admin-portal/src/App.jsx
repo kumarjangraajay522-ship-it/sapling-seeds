@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminLogin from './components/AdminLogin';
 import AdminDashboard from './components/AdminDashboard';
 
 function App() {
-  // Check if already logged in (token in localStorage)
+  // sessionStorage: survives reload, cleared when tab/window is closed
   const [isAuthenticated, setIsAuthenticated] = useState(
-    () => !!localStorage.getItem('admin_token')
+    () => !!sessionStorage.getItem('admin_token')
   );
 
   const handleLoginSuccess = () => setIsAuthenticated(true);
 
   const handleLogout = () => {
-    localStorage.removeItem('admin_token');
-    localStorage.removeItem('admin_email');
+    sessionStorage.removeItem('admin_token');
+    sessionStorage.removeItem('admin_email');
+    sessionStorage.removeItem('admin_data');
     setIsAuthenticated(false);
   };
 

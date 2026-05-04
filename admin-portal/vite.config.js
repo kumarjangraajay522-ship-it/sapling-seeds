@@ -6,7 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5714,
-    strictPort: true, // This ensures it fails if 5714 is taken, rather than picking 5715
+    strictPort: true,
+    allowedHosts: [
+      'adopted-bennett-picnic-rights.trycloudflare.com',
+    ],
     proxy: {
       '/api': {
         target: 'http://localhost:5000',

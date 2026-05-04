@@ -168,7 +168,46 @@
 }
 .sp-send:hover{transform:scale(1.1) rotate(-5deg);box-shadow:0 6px 20px rgba(58,106,37,.5)}
 
+
+/* ── Callback action buttons ── */
+.sp-callback-actions {
+  display: flex; flex-direction: column; gap: 7px;
+  margin-top: 10px;
+}
+.sp-cb-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 14px; border-radius: 20px; font-size: .78rem;
+  font-family: 'Nunito', sans-serif; font-weight: 700;
+  cursor: pointer; border: none; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.sp-cb-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+.sp-cb-wa {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff !important;
+}
+.sp-cb-call {
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  color: #fff;
+}
+.sp-cb-call:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+/* ── Callback inline form ── */
+.sp-callback-form {
+  display: flex; flex-direction: column; gap: 7px;
+  margin-top: 10px;
+}
+.sp-cb-input {
+  border: 1.5px solid #c8d8b0; border-radius: 12px; padding: 8px 12px;
+  font-family: 'Nunito', sans-serif; font-size: .82rem; font-weight: 600;
+  background: #f8f4ec; color: #1b3a10; outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.sp-cb-input:focus { border-color: #6ba368; box-shadow: 0 0 0 3px rgba(107,163,104,.15); }
+.sp-cb-input::placeholder { color: #a8b898; font-weight: 500; }
+
 .sp-footer{padding:5px 14px 10px;background:#fff;text-align:center;font-size:.62rem;color:#a8b890;font-weight:600}
+
 
 @media(max-width:480px){
   .sp-wrap{bottom:100px;right:5px;gap:4px;}

@@ -30,6 +30,7 @@ const AdminDashboard = ({ onLogout }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [products, setProducts] = useState(STATIC_PRODUCTS);
   const [orders, setOrders] = useState([]);
+  const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [apiStatus, setApiStatus] = useState('offline');
@@ -84,7 +85,7 @@ const AdminDashboard = ({ onLogout }) => {
 
   const fetchOrders = useCallback(async () => {
     try {
-      const token = localStorage.getItem('admin_token');
+      const token = sessionStorage.getItem('admin_token');
       const res = await fetch(`${API_URL}/orders`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -95,14 +96,60 @@ const AdminDashboard = ({ onLogout }) => {
     }
   }, []);
 
+  const fetchEnquiries = useCallback(async () => {
+    try {
+      const token = sessionStorage.getItem('admin_token');
+      const res = await fetch(`${API_URL}/enquiries`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.success) setEnquiries(data.data);
+    } catch (err) {
+      console.error('Failed to fetch enquiries:', err);
+    }
+  }, []);
+
+  const updateEnquiryStatus = async (id, status) => {
+    try {
+      const token = sessionStorage.getItem('admin_token');
+      const res = await fetch(`${API_URL}/enquiries/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ status })
+      });
+      if (res.ok) {
+        setEnquiries(prev => prev.map(e => e._id === id ? { ...e, status } : e));
+      }
+    } catch (err) {
+      console.error('Failed to update enquiry status:', err);
+    }
+  };
+
+  const deleteEnquiry = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this enquiry?')) return;
+    try {
+      const token = sessionStorage.getItem('admin_token');
+      const res = await fetch(`${API_URL}/enquiries/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setEnquiries(prev => prev.filter(e => e._id !== id));
+      }
+    } catch (err) {
+      console.error('Failed to delete enquiry:', err);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
     fetchOrders();
-  }, [fetchProducts, fetchOrders]);
+    fetchEnquiries();
+  }, [fetchProducts, fetchOrders, fetchEnquiries]);
 
   const updateOrderStatus = async (orderId, status) => {
     try {
-      const token = localStorage.getItem('admin_token');
+      const token = sessionStorage.getItem('admin_token');
       const res = await fetch(`${API_URL}/orders/${orderId}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
@@ -118,7 +165,7 @@ const AdminDashboard = ({ onLogout }) => {
 
   const deleteProduct = async (id) => {
     try {
-      const token = localStorage.getItem('admin_token');
+      const token = sessionStorage.getItem('admin_token');
       const res = await fetch(`${API_URL}/products/${id}`, { 
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
@@ -155,7 +202,7 @@ const AdminDashboard = ({ onLogout }) => {
   const handleSaveProduct = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('admin_token');
+      const token = sessionStorage.getItem('admin_token');
       const isEdit = !!editingProduct;
       const url = isEdit ? `${API_URL}/products/${editingProduct._id}` : `${API_URL}/products`;
       const res = await fetch(url, {
@@ -196,7 +243,7 @@ const AdminDashboard = ({ onLogout }) => {
 
     setLoading(true);
     try {
-      const token = localStorage.getItem('admin_token');
+      const token = sessionStorage.getItem('admin_token');
       for (const item of STATIC_GIFTING_DATA) {
         await fetch(`${API_URL}/products`, {
           method: 'POST',
@@ -256,6 +303,13 @@ const AdminDashboard = ({ onLogout }) => {
             <span>Orders</span>
           </button>
           <button 
+            className={`menu-item ${activeTab === 'queries' ? 'active' : ''}`}
+            onClick={() => setActiveTab('queries')}
+          >
+            <span className="menu-emoji">💬</span>
+            <span>Queries</span>
+          </button>
+          <button 
             className={`menu-item ${activeTab === 'settings' ? 'active' : ''}`}
             onClick={() => setActiveTab('settings')}
           >
@@ -291,7 +345,7 @@ const AdminDashboard = ({ onLogout }) => {
           </div>
 
           <div className="topbar-right">
-            <a href="/" target="_blank" rel="noreferrer" className="storefront-link">
+            <a href={import.meta.env.VITE_STOREFRONT_URL || "http://localhost:5174"} target="_blank" rel="noreferrer" className="storefront-link">
               <span>🚀</span> Storefront ↗
             </a>
             <div className="avatar-wrapper">
@@ -334,6 +388,13 @@ const AdminDashboard = ({ onLogout }) => {
                   <div className="stat-details">
                     <p className="stat-label">Total Revenue</p>
                     <p className="stat-value">₹{orders.reduce((acc, curr) => acc + (curr.totalPrice || 0), 0)}</p>
+                  </div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-icon" style={{ background: '#fff9c4', color: '#fbc02d' }}>💬</div>
+                  <div className="stat-details">
+                    <p className="stat-label">Queries</p>
+                    <p className="stat-value">{enquiries.length}</p>
                   </div>
                 </div>
               </div>
@@ -539,6 +600,81 @@ const AdminDashboard = ({ onLogout }) => {
                           </td>
                         </tr>
                       ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'queries' && (
+            <div className="queries-section">
+              <div className="page-header">
+                <div>
+                  <h1 className="page-title">Customer Enquiries</h1>
+                  <p className="page-subtitle">Manage messages from Contact form and Bamboo Buddy callbacks.</p>
+                </div>
+                <button className="primary-btn" onClick={fetchEnquiries}>Refresh Queries</button>
+              </div>
+
+              <div className="card">
+                <div className="table-responsive">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Customer</th>
+                        <th>Contact</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {enquiries.filter(e => e.name.toLowerCase().includes(searchQuery.toLowerCase()) || e.phone.includes(searchQuery)).map(e => (
+                        <tr key={e._id}>
+                          <td>{new Date(e.createdAt).toLocaleDateString()}</td>
+                          <td>
+                            <span className={`badge ${e.type === 'callback' ? 'badge-processing' : 'badge-shipped'}`} style={{ textTransform: 'capitalize' }}>
+                              {e.type}
+                            </span>
+                          </td>
+                          <td className="fw-600">{e.name}</td>
+                          <td>
+                            <div style={{ fontSize: '0.85rem' }}>
+                              <div>📞 {e.phone}</div>
+                              {e.email && <div>✉️ {e.email}</div>}
+                            </div>
+                          </td>
+                          <td>
+                            <div style={{ maxWidth: '300px', fontSize: '0.85rem' }}>
+                              {e.message && <div className="text-muted" style={{ fontStyle: 'italic' }}>"{e.message}"</div>}
+                              {e.page && <div style={{ marginTop: '4px', fontSize: '0.75rem', color: '#666' }}>From: {e.page}</div>}
+                            </div>
+                          </td>
+                          <td>
+                            <select 
+                              className="status-select"
+                              value={e.status}
+                              onChange={(ev) => updateEnquiryStatus(e._id, ev.target.value)}
+                              style={{ padding: '4px 8px', fontSize: '0.8rem' }}
+                            >
+                              <option value="pending">Pending</option>
+                              <option value="contacted">Contacted</option>
+                              <option value="resolved">Resolved</option>
+                            </select>
+                          </td>
+                          <td>
+                            <button className="action-btn delete" onClick={() => deleteEnquiry(e._id)}>Delete</button>
+                          </td>
+                        </tr>
+                      ))}
+                      {enquiries.length === 0 && (
+                        <tr>
+                          <td colSpan="7" className="text-center" style={{ padding: '40px' }}>No enquiries found.</td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>

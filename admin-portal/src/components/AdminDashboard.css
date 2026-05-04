@@ -432,6 +432,33 @@
   gap: 2px;
 }
 
+.badge-processing {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1e40af;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.badge-shipped {
+  background: rgba(147, 51, 234, 0.1);
+  color: #6b21a8;
+  border: 1px solid rgba(147, 51, 234, 0.2);
+}
+
+.stat-icon-purple {
+  background: rgba(147, 51, 234, 0.1);
+  color: #6b21a8;
+}
+
+.stat-icon-blue {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1e40af;
+}
+
+.stat-icon-green {
+  background: rgba(16, 185, 129, 0.1);
+  color: #065f46;
+}
+
 
 .modal-overlay {
   position: fixed;

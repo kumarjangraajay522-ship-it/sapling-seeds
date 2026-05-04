@@ -26,10 +26,10 @@ const Contact = () => {
         setSuccess('');
 
         try {
-            const res = await fetch(`${API_URL}/contact`, {
+            const res = await fetch(`${API_URL}/enquiries`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({ ...formData, type: 'contact' }),
             });
 
             if (res.ok) {

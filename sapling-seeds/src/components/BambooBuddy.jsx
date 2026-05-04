@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './BambooBuddy.css';
 
 /* ════════════════════════════════════════════
@@ -120,11 +121,13 @@ const getSmartReply = (text) => {
     return "Use code EARTHDAY for 10% off your first order 🌿 Also, subscribe to our newsletter for exclusive eco-deals!";
   if (t.includes('impact') || t.includes('tree') || t.includes('carbon'))
     return "This year alone we've offset 12 tonnes of CO₂ and planted 840 trees 🌳 Every purchase adds to this!";
-  const fallbacks = [
-    "Should I arrange a callback from our team so that we can help you choose the product?",
-  ];
-  return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+  // Return a special marker so we can render action buttons
+  return '__CALLBACK_OFFER__';
 };
+
+// ── Callback offer message ──
+const CALLBACK_OFFER_TEXT = "I'd be happy to get you connected with one of our agents to help you select your items and complete your order 🌿\n\nOr if you wish to receive a callback, I can arrange that as well!";
+
 
 /* ── SVG Sprout Robot (same realistic design) ── */
 const SproutSVG = ({ blink, expression = 'happy' }) => {
@@ -276,6 +279,7 @@ const TypingDots = () => (
 ══════════════════════════════════════════ */
 const BambooBuddy = () => {
   const location = useLocation();
+  const { user } = useAuth();
   const [open, setOpen]           = useState(false);
   const [input, setInput]         = useState('');
   const [blink, setBlink]         = useState(false);
@@ -287,6 +291,12 @@ const BambooBuddy = () => {
   const [firstClick, setFirstClick] = useState(true);
   const [notif, setNotif]         = useState(true);
   const [triggerLabel, setTriggerLabel] = useState('');
+  // Callback request states
+  const [callbackForm, setCallbackForm] = useState(false);
+  const [callbackName, setCallbackName] = useState('');
+  const [callbackPhone, setCallbackPhone] = useState('');
+  const [callbackSent, setCallbackSent] = useState(false);
+  const [callbackLoading, setCallbackLoading] = useState(false);
 
   const bottomRef  = useRef(null);
   const idleTimer  = useRef(null);
@@ -477,13 +487,52 @@ const BambooBuddy = () => {
       if (data.success) {
         setChat(c => [...c, { from: 'buddy', text: data.reply }]);
       } else {
-        setChat(c => [...c, { from: 'buddy', text: getSmartReply(txt) }]);
+        const reply = getSmartReply(txt);
+        if (reply === '__CALLBACK_OFFER__') {
+          setChat(c => [...c, { from: 'buddy', text: CALLBACK_OFFER_TEXT, type: 'callback_offer' }]);
+        } else {
+          setChat(c => [...c, { from: 'buddy', text: reply }]);
+        }
       }
     } catch (err) {
       console.error('AI Error:', err);
       setTyping(false);
       setExpr('sad');
-      setChat(c => [...c, { from: 'buddy', text: "Should I arrange a callback from our team so that we can help you choose the product?" }]);
+      setChat(c => [...c, { from: 'buddy', text: CALLBACK_OFFER_TEXT, type: 'callback_offer' }]);
+    }
+  };
+
+  /* ── Submit Callback Request ── */
+  const submitCallback = async (nameOverride, phoneOverride) => {
+    const name  = nameOverride  || callbackName.trim()  || user?.name  || '';
+    const phone = phoneOverride || callbackPhone.trim() || user?.phone || '';
+    if (!name || !phone) { setCallbackForm(true); return; }
+
+    setCallbackLoading(true);
+    try {
+      await fetch(`${import.meta.env.VITE_API_URL || '/api/v1'}/enquiries`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, page: location.pathname, type: 'callback', requestedAt: new Date().toISOString() })
+      });
+      setCallbackSent(true);
+      setCallbackForm(false);
+      setChat(c => [...c, { from: 'buddy', text: `✅ Got it, ${name}! Our team will call you at ${phone} shortly. Thank you for reaching out! 🌿` }]);
+    } catch {
+      setChat(c => [...c, { from: 'buddy', text: `📲 Please WhatsApp us directly at +91 93543 61055 and we'll arrange a callback right away!` }]);
+    } finally {
+      setCallbackLoading(false);
+    }
+  };
+
+  /* ── Auto-fill from profile and open form ── */
+  const handleRequestCallback = () => {
+    if (user?.name && (user?.phone || user?.mobile)) {
+      submitCallback(user.name, user.phone || user.mobile);
+    } else {
+      setCallbackName(user?.name || '');
+      setCallbackPhone(user?.phone || user?.mobile || '');
+      setCallbackForm(true);
     }
   };
 
@@ -550,11 +599,58 @@ const BambooBuddy = () => {
               <div key={i} className={`sp-msg${m.from === 'user' ? ' user' : ''}`}>
                 {m.from === 'buddy' && <div className="sp-av">🌿</div>}
                 <div className="sp-bbl-wrap">
-                  <span className="sp-bbl">{m.text}</span>
+                  <span className="sp-bbl" style={{ whiteSpace: 'pre-line' }}>{m.text}</span>
                   {m.sub && <span className="sp-bbl-sub">{m.sub}</span>}
+                  {m.type === 'callback_offer' && i === chat.length - 1 && !callbackSent && (
+                    <div className="sp-callback-actions">
+                      <a
+                        href="https://wa.me/919354361055?text=Hi%20Sapling%20%26%20Seeds,%20I%20need%20help%20selecting%20products!"
+                        target="_blank" rel="noopener noreferrer"
+                        className="sp-cb-btn sp-cb-wa"
+                      >
+                        💬 Connect on WhatsApp
+                      </a>
+                      <button className="sp-cb-btn sp-cb-call" onClick={handleRequestCallback} disabled={callbackLoading}>
+                        {callbackLoading ? '⏳ Sending…' : '📞 Request Callback'}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
+
+            {/* Inline callback form (shown when user not logged in or no phone) */}
+            {callbackForm && !callbackSent && (
+              <div className="sp-msg">
+                <div className="sp-av">🌿</div>
+                <div className="sp-bbl-wrap">
+                  <span className="sp-bbl">Please share your details and we'll call you right back!</span>
+                  <div className="sp-callback-form">
+                    <input
+                      className="sp-cb-input"
+                      placeholder="Your Name"
+                      value={callbackName}
+                      onChange={e => setCallbackName(e.target.value)}
+                    />
+                    <input
+                      className="sp-cb-input"
+                      placeholder="Phone Number"
+                      type="tel"
+                      value={callbackPhone}
+                      onChange={e => setCallbackPhone(e.target.value)}
+                    />
+                    <button
+                      className="sp-cb-btn sp-cb-call"
+                      onClick={() => submitCallback()}
+                      disabled={callbackLoading || !callbackName || !callbackPhone}
+                    >
+                      {callbackLoading ? '⏳ Submitting…' : '✅ Confirm Callback'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {typing && (
               <div className="sp-msg">
                 <div className="sp-av">🌿</div>
@@ -563,6 +659,7 @@ const BambooBuddy = () => {
             )}
             <div ref={bottomRef}/>
           </div>
+
 
           <div className="sp-inp-row">
             <input

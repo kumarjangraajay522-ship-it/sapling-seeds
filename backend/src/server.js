@@ -21,6 +21,7 @@ import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
+import enquiryRoutes from './routes/enquiryRoutes.js';
 import { getDashboardStats } from './routes/productRoutes.js';
 
 const app = express();
@@ -99,6 +100,7 @@ app.use(`${apiPrefix}/products`, productRoutes);
 app.use(`${apiPrefix}/orders`, orderRoutes);
 app.use(`${apiPrefix}/upload`, uploadRoutes);
 app.use(`${apiPrefix}/ai`, aiRoutes);
+app.use(`${apiPrefix}/enquiries`, enquiryRoutes);
 app.get(`${apiPrefix}/admin/stats`, getDashboardStats);
 
 // Root API endpoint

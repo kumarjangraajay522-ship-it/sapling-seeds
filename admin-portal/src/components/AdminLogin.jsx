@@ -96,10 +96,10 @@ const AdminLogin = ({ onLoginSuccess }) => {
         otpRefs.current[0]?.focus();
       } else {
         // ✅ Verified!
-        localStorage.setItem('admin_token', data.token);
-        localStorage.setItem('admin_email', email);
+        sessionStorage.setItem('admin_token', data.token);
+        sessionStorage.setItem('admin_email', email);
         if (data.user) {
-          localStorage.setItem('admin_data', JSON.stringify(data.user));
+          sessionStorage.setItem('admin_data', JSON.stringify(data.user));
         }
         onLoginSuccess();
       }
