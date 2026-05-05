@@ -110,10 +110,6 @@ const Login = () => {
 
     // Handle Google Login Success
     const handleGoogleSuccess = async (credentialResponse) => {
-        // Ignore One Tap auto-triggers — only proceed if user explicitly clicked
-        if (!googleClickedRef.current) return;
-        googleClickedRef.current = false;
-
         setLoading(true);
         setError('');
 
@@ -125,9 +121,8 @@ const Login = () => {
             });
 
             const contentType = res.headers.get('content-type') || '';
-            if (!contentType.includes('application/json')) {
-                throw new Error('Server is unavailable. Please use email login.');
-            }
+            // Backend not available or returned non-JSON — fail silently
+            if (!contentType.includes('application/json')) return;
 
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Google Authentication failed.');
@@ -135,7 +130,7 @@ const Login = () => {
             login(data.user, data.token);
             navigate('/');
         } catch (err) {
-            setError(err instanceof SyntaxError ? 'Server is unavailable. Please use email login.' : err.message);
+            if (!(err instanceof TypeError)) setError(err.message);
         } finally {
             setLoading(false);
         }

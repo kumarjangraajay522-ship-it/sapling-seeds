@@ -114,15 +114,13 @@ const DidYouKnow = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
             >
-              <a
-                href="https://wa.me/919354361055?text=Hi%20Sapling%20%26%20Seeds,%20I%20want%20to%20claim%20my%20free%20gift!"
-                target="_blank" 
-                rel="noopener noreferrer"
+              <Link
+                to="/collection"
                 className="dyk-signup-btn dyk-signup-btn-inside"
                 style={{ display: 'inline-block', textDecoration: 'none' }}
               >
                 CLAIM YOURS NOW
-              </a>
+              </Link>
             </motion.div>
           </div>
           <motion.img
