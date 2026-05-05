@@ -74,7 +74,8 @@ const AppContent = () => {
             <ScrollToHash />
             <Suspense fallback={<PageFallback />}>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Login />} />
+                    <Route path="/home" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/collection" element={<Collection />} />
                     <Route path="/gifting" element={<Gifting />} />
