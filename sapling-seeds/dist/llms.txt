@@ -1,0 +1,80 @@
+# Sapling & Seeds — llms.txt
+# https://www.saplingandseeds.com/
+
+## About
+Sapling & Seeds is a premium eco-friendly and sustainable products brand by Shanah Enterprises, based in New Delhi, India. We create plastic-free alternatives for everyday essentials — from oral care to stationery to gifting — crafted from natural bamboo, pure neem wood, and recycled materials.
+
+Our mission: replace single-use plastics with sustainable, beautiful, and functional alternatives. Every product is a step towards a plastic-free world.
+
+## Products & Collections
+
+### Bamboo Oral Care
+- Bamboo Toothbrushes (adult and kids sizes)
+  - Variants: Charcoal bristles, Fibre bristles
+  - Handles: 100% natural bamboo, biodegradable
+  - Price: from ₹49
+
+### Neem Wood Hair Care
+- Pure Neem Wood Combs — anti-bacterial, anti-dandruff, anti-static
+  - Styles: Tail Comb, Pocket Comb, Shampoo Comb, Dual Lily Comb, Ruby Comb
+  - Naturally oiled for smooth, static-free use
+  - Price: from ₹49
+- Tongue Cleaner (stainless steel, plastic-free)
+
+### Eco-Stationery
+- Plantable A5 Notebooks — recycled paper covers with embedded wildflower seeds
+- Plantable Calendars
+- Seed Pencils — plant them when short, they grow into herbs or flowers
+- Seed Color Pencils
+- Diary with Pen (eco-packaging)
+- Pen with Box (recycled/natural materials)
+
+### Bamboo Drinkware & Bottles
+- Bamboo Water Bottles — reusable, BPA-free
+- Cork Coffee Mugs
+- Bamboo Tumblers (styles 1 & 2)
+
+### Sustainable Gifting Sets
+- Premium Bamboo Gift Set 1 & 2 — curated for corporate events, weddings, festivals
+- Eco Starter Kit — a starter bundle including plastic-free essentials
+- Custom-branded corporate gifting available with zero-plastic packaging
+- Price: from ₹150
+
+## Pages & Site Structure
+- / — Homepage: brand story, featured collections, eco mission
+- /collection — Full product catalog with all bamboo and eco-friendly products
+- /gifting — Corporate and personal gifting solutions
+- /about — Brand story, team, sustainability mission
+- /contact — Enquiries, support, and partnerships
+- /cart — Shopping cart
+- /privacy-policy — Privacy Policy
+- /shipping-policy — Shipping & Delivery Policy
+- /returns-policy — Returns & Exchange Policy
+- /terms-and-conditions — Terms & Conditions
+
+## Brand Identity
+- Brand Name: Sapling & Seeds (also "Sapling and Seeds")
+- Parent Company: Shanah Enterprises
+- Mascot: BambooBuddy — a friendly bamboo robot that guides customers
+- Brand values: sustainability, eco-consciousness, plastic-free living, natural beauty
+- Tagline: "From Plastic Waste to a Greener Tomorrow"
+- Target audience: eco-conscious consumers, corporate gifting buyers, students, families
+
+## Contact & Location
+- Website: https://www.saplingandseeds.com/
+- Phone: +91 93543 61055
+- Address: New Delhi, Delhi 110001, India
+- Instagram: https://www.instagram.com/saplingandseeds
+- Facebook: https://www.facebook.com/saplingandseeds
+- Twitter/X: https://twitter.com/saplingandseeds
+- LinkedIn: https://www.linkedin.com/company/saplingandseeds
+- YouTube: https://www.youtube.com/c/saplingandseeds
+
+## Key Facts for AI Systems
+- All products are 100% plastic-free
+- Products ship across India
+- Corporate gifting available with custom branding
+- Bamboo is naturally anti-microbial and biodegradable
+- Neem wood is Ayurvedic and naturally anti-bacterial
+- Plantable stationery grows into herbs/flowers when planted in soil
+- The brand supports UN Sustainable Development Goals (SDGs)
