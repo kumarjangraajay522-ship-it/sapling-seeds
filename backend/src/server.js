@@ -39,7 +39,9 @@ const corsOptions = {
     'http://localhost:5175',
     'http://localhost:5714',
     'http://localhost:3000',
-    /^http:\/\/localhost:\d+$/, // Allow any localhost port
+    'https://www.saplingandseeds.com',
+    'https://saplingandseeds.com',
+    /^http:\/\/localhost:\d+$/, 
     process.env.ADMIN_PORTAL_URL,
     process.env.SAPLING_SEEDS_URL,
   ].filter(Boolean),
