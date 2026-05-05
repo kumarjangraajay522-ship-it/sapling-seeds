@@ -95,6 +95,10 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Serve static files from the React app build
+const frontendDistPath = path.join(__dirname, '../dist');
+app.use(express.static(frontendDistPath));
+
 // API Routes
 const apiPrefix = process.env.API_PREFIX || '/api/v1';
 app.use(`${apiPrefix}/auth`, authRoutes);
@@ -112,6 +116,13 @@ app.get(`${apiPrefix}`, (req, res) => {
     version: 'v1',
     status: 'running'
   });
+});
+
+// Any other request that doesn't match an API route, serve index.html
+app.get('*', (req, res) => {
+  if (!req.path.startsWith(apiPrefix)) {
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  }
 });
 
 // Error Handling Middleware
