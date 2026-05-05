@@ -1,0 +1,26 @@
+Options -Indexes
+
+# Ensure .js files are served with the correct MIME type
+AddType application/javascript .js
+AddType text/css .css
+
+RewriteEngine On
+RewriteBase /
+
+# Serve the built index.html for root requests
+RewriteRule ^$ dist/index.html [L]
+RewriteRule ^index\.html$ dist/index.html [L]
+
+# Allow direct access to anything already inside dist/
+RewriteRule ^dist/ - [L]
+
+# Rewrite /assets/* to /dist/assets/*
+RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
+
+# Rewrite known static files to their dist/ copies
+RewriteRule ^(cursor\.png|robots\.txt|sitemap\.xml|llms\.txt|_redirects)$ dist/$1 [L]
+
+# SPA fallback — let React Router handle all other paths
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . dist/index.html [L]
