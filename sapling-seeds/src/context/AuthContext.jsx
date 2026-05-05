@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
                 }
                 return { success: false, message: data.message };
             }
-            return { success: false, message: "Server returned an invalid response. Please check backend." };
+            return { success: false, message: "API Error: Invalid server response (404)." };
         } catch (error) {
             return { success: false, message: "Server connection failed." };
         }

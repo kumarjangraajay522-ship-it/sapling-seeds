@@ -17,6 +17,7 @@ const Login = () => {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [devHint, setDevHint] = useState('');
     const otpRefs = useRef([]);
+    const googleClickedRef = useRef(false);
 
     // Check if we are running on Cloudflare Tunnel (Google OAuth will block this by default)
     const isCloudflareTunnel = typeof window !== 'undefined' && window.location.hostname.includes('trycloudflare.com');
@@ -101,6 +102,10 @@ const Login = () => {
 
     // Handle Google Login Success
     const handleGoogleSuccess = async (credentialResponse) => {
+        // Ignore One Tap auto-triggers — only proceed if user explicitly clicked
+        if (!googleClickedRef.current) return;
+        googleClickedRef.current = false;
+
         setLoading(true);
         setError('');
 
@@ -216,20 +221,24 @@ const Login = () => {
                             <span>or join with</span>
                         </div>
 
-                        <div className="google-auth-wrapper">
+                        <div
+                            className="google-auth-wrapper"
+                            onClickCapture={() => { googleClickedRef.current = true; }}
+                        >
                             {isCloudflareTunnel ? (
                                 <div style={{ textAlign: 'center', fontSize: '0.85rem', color: '#d32f2f', padding: '10px', background: '#ffebee', borderRadius: '8px', border: '1px solid #ffcdd2', lineHeight: '1.4' }}>
                                     <strong>Google Login Disabled</strong><br/>
-                                    Google blocks login from preview tunnels. Please use the Email & Password login above.
+                                    Google blocks login from preview tunnels. Please use the Email &amp; Password login above.
                                 </div>
                             ) : (
                                 <GoogleLogin
                                     onSuccess={handleGoogleSuccess}
-                                    onError={() => setError('Google Login failed. Please try email login.')}
+                                    onError={() => { if (googleClickedRef.current) setError('Google Login failed. Please try email login.'); googleClickedRef.current = false; }}
                                     theme="filled_black"
                                     shape="pill"
                                     text="continue_with"
                                     width="320"
+                                    auto_select={false}
                                 />
                             )}
                         </div>
