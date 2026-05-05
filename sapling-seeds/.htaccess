@@ -4,9 +4,6 @@ Options -Indexes
 AddType application/javascript .js
 AddType text/css .css
 
-# Fix Google OAuth popup COOP issue
-Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
-
 RewriteEngine On
 RewriteBase /
 
