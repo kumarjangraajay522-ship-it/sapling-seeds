@@ -212,27 +212,62 @@
       React replaces this when the app loads; crawlers that don't execute JS see the structured content below.
     -->
   <div id="root">
-    <div
-      style="background:#F9F7F3;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem;font-family:sans-serif;">
-      <h1
-        style="font-size:clamp(1.75rem,5vw,3rem);color:#025819;font-weight:700;line-height:1.15;max-width:720px;margin:0 0 1rem;">
-        Premium Eco-Friendly Bamboo &amp; Sustainable Products</h1>
-      <h2 style="font-size:clamp(1rem,2.5vw,1.3rem);color:#3a3a3a;font-weight:500;max-width:600px;margin:0 0 1.25rem;">
-        Bamboo Toothbrushes, Neem Wood Combs &amp; Plantable Stationery</h2>
-      <p style="color:#555;max-width:580px;line-height:1.75;margin:0 0 1.5rem;font-size:1rem;">Shop plastic-free bamboo
-        products at Sapling &amp; Seeds — eco-friendly bamboo toothbrushes, pure neem wood hair combs, plantable
-        notebooks, seed pencils, bamboo bottles, and sustainable corporate gifting sets for a greener tomorrow. Every
-        purchase is a step towards a plastic-free world.</p>
-      <h2 style="font-size:1rem;color:#025819;font-weight:600;margin:0 0 0.5rem;letter-spacing:0.05em;">Our Sustainable
-        Collections</h2>
-      <ul style="list-style:none;padding:0;margin:0 0 1.5rem;color:#444;line-height:2.2;font-size:0.95rem;">
-        <li>Bamboo Toothbrushes &amp; Oral Care (from &#8377;49)</li>
-        <li>Pure Neem Wood Hair Combs — anti-bacterial &amp; plastic-free</li>
-        <li>Plantable Stationery &amp; Seed Pencils (from &#8377;99)</li>
-        <li>Bamboo Bottles &amp; Reusable Tumblers</li>
-        <li>Eco-Friendly Corporate Gift Sets (from &#8377;150)</li>
-      </ul>
-      <p style="color:#888;font-size:0.8rem;margin:0;">Loading Sapling &amp; Seeds&hellip;</p>
+    <style>
+      @keyframes ss-spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes ss-leaf-bounce {
+        0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+        50% { transform: translateY(-10px) scale(1.08); opacity: 0.85; }
+      }
+      @keyframes ss-fade-in {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      #ss-splash {
+        background: #F9F7F3;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Nunito', 'DM Sans', sans-serif;
+        animation: ss-fade-in 0.5s ease both;
+      }
+      #ss-leaf {
+        font-size: 3.2rem;
+        animation: ss-leaf-bounce 1.6s ease-in-out infinite;
+        margin-bottom: 1rem;
+        line-height: 1;
+      }
+      #ss-brand {
+        font-size: 1.55rem;
+        font-weight: 800;
+        color: #025819;
+        letter-spacing: 0.01em;
+        margin-bottom: 0.3rem;
+      }
+      #ss-tag {
+        font-size: 0.78rem;
+        color: #5a7a62;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      #ss-ring {
+        width: 36px;
+        height: 36px;
+        border: 3px solid #d4e8d9;
+        border-top-color: #025819;
+        border-radius: 50%;
+        animation: ss-spin 0.85s linear infinite;
+      }
+    </style>
+    <div id="ss-splash">
+      <div id="ss-leaf">🌿</div>
+      <div id="ss-brand">Sapling &amp; Seeds</div>
+      <div id="ss-tag">Eco · Bamboo · Sustainable</div>
+      <div id="ss-ring"></div>
     </div>
   </div>
   <script type="module" src="/src/main.jsx"></script>
