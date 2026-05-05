@@ -20,6 +20,9 @@ RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
 # Rewrite known static files to their dist/ copies
 RewriteRule ^(cursor\.png|robots\.txt|sitemap\.xml|llms\.txt|_redirects)$ dist/$1 [L]
 
+# Don't rewrite API requests — let them pass through to the backend
+RewriteRule ^api/ - [L]
+
 # SPA fallback — let React Router handle all other paths
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
