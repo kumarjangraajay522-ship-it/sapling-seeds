@@ -16,9 +16,15 @@ export const ShopProvider = ({ children }) => {
         setLoading(true);
         try {
             const res = await fetch(`${API_URL}/products?active=true`);
-            const data = await res.json();
-            if (data.success) {
-                setProducts(data.data);
+            const contentType = res.headers.get("content-type");
+            
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                const data = await res.json();
+                if (data.success) {
+                    setProducts(data.data);
+                }
+            } else {
+                console.error("API returned non-JSON response:", await res.text());
             }
         } catch (error) {
             console.error("Error fetching products:", error);

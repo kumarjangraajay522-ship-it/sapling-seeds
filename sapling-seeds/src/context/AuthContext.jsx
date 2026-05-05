@@ -4,6 +4,8 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
+const API_URL = import.meta.env.VITE_API_URL || '/api/v1';
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
         try {
@@ -16,11 +18,30 @@ export const AuthProvider = ({ children }) => {
     });
     const [token, setToken] = useState(localStorage.getItem('user_token') || null);
 
-    const login = (userData, userToken) => {
-        setUser(userData);
-        setToken(userToken);
-        localStorage.setItem('user_data', JSON.stringify(userData));
-        localStorage.setItem('user_token', userToken);
+    const login = async (email, password) => {
+        try {
+            const res = await fetch(`${API_URL}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                const data = await res.json();
+                if (data.success) {
+                    setToken(data.token);
+                    setUser(data.user);
+                    localStorage.setItem('user_token', data.token);
+                    localStorage.setItem('user_data', JSON.stringify(data.user));
+                    return { success: true };
+                }
+                return { success: false, message: data.message };
+            }
+            return { success: false, message: "Server returned an invalid response. Please check backend." };
+        } catch (error) {
+            return { success: false, message: "Server connection failed." };
+        }
     };
 
     const logout = () => {
