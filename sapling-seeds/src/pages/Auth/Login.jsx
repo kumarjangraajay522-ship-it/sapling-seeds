@@ -48,6 +48,8 @@ const Login = () => {
                 }),
             });
 
+            const contentType = res.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) throw new Error('Server is unavailable. Please try again later.');
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Failed to send OTP.');
 
@@ -56,7 +58,7 @@ const Login = () => {
             }
             setStep(2);
         } catch (err) {
-            setError(err.message);
+            setError(err instanceof SyntaxError ? 'Server is unavailable. Please try again later.' : err.message);
         } finally {
             setLoading(false);
         }
@@ -109,13 +111,18 @@ const Login = () => {
                 body: JSON.stringify({ idToken: credentialResponse.credential }),
             });
 
+            const contentType = res.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) {
+                throw new Error('Server is unavailable. Please use email login.');
+            }
+
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Google Authentication failed.');
 
             login(data.user, data.token);
             navigate('/');
         } catch (err) {
-            setError(err.message);
+            setError(err instanceof SyntaxError ? 'Server is unavailable. Please use email login.' : err.message);
         } finally {
             setLoading(false);
         }
@@ -218,11 +225,11 @@ const Login = () => {
                             ) : (
                                 <GoogleLogin
                                     onSuccess={handleGoogleSuccess}
-                                    onError={() => setError('Google Login Failed. Please try again.')}
-                                    theme="filled_blue"
+                                    onError={() => setError('Google Login failed. Please try email login.')}
+                                    theme="filled_black"
                                     shape="pill"
                                     text="continue_with"
-                                    width="100%"
+                                    width="320"
                                 />
                             )}
                         </div>
