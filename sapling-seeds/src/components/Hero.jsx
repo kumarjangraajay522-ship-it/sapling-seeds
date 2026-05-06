@@ -39,7 +39,7 @@ const Hero = () => {
   }, [isMobile]);
 
   return (
-    <div className="relative w-full" style={{ isolation: 'isolate', backgroundColor: '#F9F7F3', overflow: 'hidden', minHeight: '100vh', transform: 'translateZ(0)' }}>
+    <div className="relative w-full" style={{ isolation: 'isolate', backgroundColor: 'var(--color-bg)', overflow: 'hidden', minHeight: '100vh', transform: 'translateZ(0)' }}>
       {/* ── Background Layer ─────────────────────────────────────── */}
       <div
         style={{

@@ -20,14 +20,24 @@ body {
   font-family: var(--font-body);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   color: var(--color-heading);
 }
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
-  section, .dyk-container, .wws-section, .premium-feature-showcase, .our-clients-section {
+
+  section,
+  .dyk-container,
+  .wws-section,
+  .premium-feature-showcase,
+  .our-clients-section {
     content-visibility: auto;
     contain-intrinsic-size: 1px 500px;
   }
