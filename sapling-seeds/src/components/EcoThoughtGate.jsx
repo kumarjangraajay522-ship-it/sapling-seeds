@@ -3,8 +3,8 @@ import './EcoThoughtGate.css';
 
 const THOUGHTS = [
     {
-        title: "Premium Eco-Friendly Bamboo & Sustainable Products",
-        subtitle: "Bamboo Toothbrushes, Neem Wood Combs & Plantable Stationery"
+        title: "Switch to eco-friendly living with Sapling & Seeds",
+        subtitle: "Recycled paper, bamboo products, and sustainable solutions for businesses and homes."
     }
 ];
 
