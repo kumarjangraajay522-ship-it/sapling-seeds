@@ -17,16 +17,23 @@ const Hero = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    // Defer video loading until browser is idle — prevents video from competing
-    // with critical JS/CSS on first load, which was the primary cause of TTI ~10s
+
+    // Smart Load: Skip video auto-play if user is on slow connection or data-saver
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn && (conn.saveData || (conn.effectiveType && conn.effectiveType.includes('2g')))) {
+      console.log('Slow connection detected. Skipping hero video autoplay for speed.');
+      return;
+    }
+
     const startVideo = () => {
       video.play().catch(() => { });
     };
+    
     if ('requestIdleCallback' in window) {
-      const id = requestIdleCallback(startVideo, { timeout: 1500 });
+      const id = requestIdleCallback(startVideo, { timeout: 2000 });
       return () => cancelIdleCallback(id);
     }
-    const timer = setTimeout(startVideo, 1000);
+    const timer = setTimeout(startVideo, 1500);
     return () => clearTimeout(timer);
   }, []);
 
