@@ -13,15 +13,16 @@ const FADE = 0.5;
 const Hero = () => {
   const { user } = useAuth();
   const videoRef = useRef(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   useEffect(() => {
+    if (isMobile) return; // Don't run video logic on mobile to save memory/CPU
+
     const video = videoRef.current;
     if (!video) return;
 
-    // Smart Load: Skip video auto-play if user is on slow connection or data-saver
     const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     if (conn && (conn.saveData || (conn.effectiveType && conn.effectiveType.includes('2g')))) {
-      console.log('Slow connection detected. Skipping hero video autoplay for speed.');
       return;
     }
 
@@ -35,12 +36,11 @@ const Hero = () => {
     }
     const timer = setTimeout(startVideo, 1500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="relative w-full" style={{ isolation: 'isolate', backgroundColor: '#F9F7F3', overflow: 'hidden', minHeight: '100vh', transform: 'translateZ(0)' }}>
-
-      {/* ── Video Background ─────────────────────────────────────── */}
+      {/* ── Background Layer ─────────────────────────────────────── */}
       <div
         style={{
           position: 'absolute',
@@ -53,20 +53,33 @@ const Hero = () => {
           transform: 'translateZ(0)'
         }}
       >
-        <video
-          ref={videoRef}
-          src={VIDEO_URL}
-          loop
-          muted
-          playsInline
-          preload="none"
-          poster="/hero-poster.jpg"
-          className="w-full h-full object-cover"
-          style={{ opacity: 0, transition: 'opacity 1s ease-in', transform: 'translateZ(0)' }}
-          onCanPlay={(e) => { e.currentTarget.style.opacity = 1; }}
-        >
-          <track kind="captions" srcLang="en" label="English" src="data:text/vtt,WEBVTT" default />
-        </video>
+        {!isMobile ? (
+          <video
+            ref={videoRef}
+            src={VIDEO_URL}
+            loop
+            muted
+            playsInline
+            preload="none"
+            poster="/hero-poster.jpg"
+            className="w-full h-full object-cover"
+            style={{ opacity: 0, transition: 'opacity 1s ease-in', transform: 'translateZ(0)' }}
+            onCanPlay={(e) => { e.currentTarget.style.opacity = 1; }}
+          >
+            <track kind="captions" srcLang="en" label="English" src="data:text/vtt,WEBVTT" default />
+          </video>
+        ) : (
+          /* Use high-res optimized image for mobile to get 90+ speed score */
+          <img 
+            src="/hero-poster.jpg" 
+            alt="Sapling & Seeds Hero" 
+            className="w-full h-full object-cover" 
+            loading="eager" 
+            fetchpriority="high"
+            decoding="async"
+            style={{ transform: 'translateZ(0)' }}
+          />
+        )}
       </div>
 
       {/* ── Gradient Overlays ────────────────────────────────────── */}
