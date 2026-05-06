@@ -31,6 +31,13 @@ app.set('trust proxy', true);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Security Headers for Google OAuth (Fixes Cross-Origin-Opener-Policy errors)
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+});
+
 // CORS Configuration
 const corsOptions = {
   origin: [
@@ -69,6 +76,7 @@ const mongoURI = "mongodb://ajayk283703_db_user:PPWSb8wzJuZKGGET@ac-c7dasor-shar
 
 console.log("============== DEBUG ==============");
 console.log("Attempting to connect to MongoDB...");
+console.log("Connecting to: ", mongoURI.split('@')[1] || 'Cluster'); // Log only host for safety
 console.log("===================================");
 
 mongoose

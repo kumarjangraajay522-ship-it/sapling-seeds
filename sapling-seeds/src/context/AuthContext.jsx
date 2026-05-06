@@ -18,7 +18,22 @@ export const AuthProvider = ({ children }) => {
     });
     const [token, setToken] = useState(localStorage.getItem('user_token') || null);
 
-    const login = async (email, password) => {
+    const login = async (emailOrUser, passwordOrToken) => {
+        // Handle direct login from OTP/Google (when called with user object and token string)
+        if (typeof emailOrUser === 'object' && emailOrUser !== null) {
+            const userData = emailOrUser;
+            const userToken = passwordOrToken;
+            setToken(userToken);
+            setUser(userData);
+            localStorage.setItem('user_token', userToken);
+            localStorage.setItem('user_data', JSON.stringify(userData));
+            return { success: true };
+        }
+
+        // Traditional email/password login
+        const email = emailOrUser;
+        const password = passwordOrToken;
+
         try {
             const res = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
