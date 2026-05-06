@@ -79,14 +79,20 @@ console.log("Attempting to connect to MongoDB...");
 console.log("Connecting to: ", mongoURI.split('@')[1] || 'Cluster'); // Log only host for safety
 console.log("===================================");
 
+let dbStatus = 'connecting';
+let dbError = null;
+
 mongoose
   .connect(mongoURI) 
   .then(() => {
+    dbStatus = 'connected';
     console.log('✅ MongoDB connected successfully!');
   })
   .catch((error) => {
+    dbStatus = 'error';
+    dbError = error.message;
     console.error('❌ MongoDB connection error details:', error);
-    process.exit(1); 
+    // Don't exit process in production, let the server stay up to provide error feedback
   });
 
 // Basic Route to Test the Connection
@@ -99,6 +105,8 @@ app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     message: 'Backend server is running',
+    database: dbStatus,
+    dbError: dbStatus === 'error' ? dbError : undefined,
     timestamp: new Date().toISOString()
   });
 });
@@ -109,6 +117,19 @@ app.use(express.static(frontendDistPath));
 
 // API Routes
 const apiPrefix = process.env.API_PREFIX || '/api/v1';
+
+// Database status middleware
+app.use(apiPrefix, (req, res, next) => {
+  if (dbStatus === 'error') {
+    return res.status(503).json({
+      success: false,
+      error: 'Database connection failed. Please ensure your production IP is whitelisted in MongoDB Atlas.',
+      details: dbError
+    });
+  }
+  next();
+});
+
 app.use(`${apiPrefix}/auth`, authRoutes);
 app.use(`${apiPrefix}/products`, productRoutes);
 app.use(`${apiPrefix}/orders`, orderRoutes);
