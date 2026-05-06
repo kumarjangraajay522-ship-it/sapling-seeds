@@ -23,7 +23,7 @@
 
 .wws-title {
   font-size: 3.5rem;
-  color: #1a241a;
+  color: var(--color-heading);
   margin-bottom: 16px;
 }
 

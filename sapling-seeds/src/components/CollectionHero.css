@@ -300,7 +300,7 @@
   .ch-stage {
     gap: 5vh !important;
     /* Smaller gap for immediate stacking */
-    padding-bottom: 50vh !important;
+    padding-bottom: 15vh !important;
     /* Room to scroll through all stacks */
   }
 }
@@ -342,7 +342,7 @@
 
 @media (max-width: 480px) {
   .ch-root {
-    padding-bottom: 20vh !important;
+    padding-bottom: 0 !important;
   }
 
   .ch-intro {

@@ -53,7 +53,7 @@ const Home = () => {
             <div className="inline-block mb-4">
               <span className="text-xs md:text-base font-semibold text-[#4caf50] uppercase tracking-widest bg-[var(--color-bg)]/10 px-4 py-1.5 rounded-full border border-[#898780]/30" style={{ color: 'darkgreen' }}>Starter Collection</span>
             </div>
-            <h2 className="font-serif text-[#1a241a] mb-6 leading-tight px-2 text-center" style={{ width: '100%', color: 'darkgreen', fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>Start Your Eco Journey</h2>
+            <h2 className="font-serif text-[var(--color-heading)] mb-6 leading-tight px-2 text-center" style={{ width: '100%', color: 'var(--color-heading)', fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>Start Your Eco Journey</h2>
             <div className="flex justify-center mb-8">
               <div className="w-20 h-1.5 bg-gradient-to-r from-transparent via-[#4caf50] to-transparent rounded-full opacity-60"></div>
             </div>

@@ -46,7 +46,7 @@ import daisy from './Daisy Website.png';
 import sanchu from './Sanchu Website.png';
 import pawan from './pawan.png';
 import aboutHero from './about_hero.png';
-
+import cursor from './cursor.png';
 
 export const assets = {
     heroFlatlay,
@@ -97,7 +97,7 @@ export const assets = {
     ajay,
     pawan,
     aboutHero,
-    cursor: '/cursor.png',
+    cursor,
 };
 
 export const getProductImage = (imageStr) => {
