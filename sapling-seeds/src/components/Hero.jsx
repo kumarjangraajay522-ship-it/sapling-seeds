@@ -31,10 +31,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full" style={{ isolation: 'isolate', backgroundColor: '#F9F7F3', overflow: 'hidden', minHeight: '100vh' }}>
-
-
-
+    <div className="relative w-full" style={{ isolation: 'isolate', backgroundColor: '#F9F7F3', overflow: 'hidden', minHeight: '100vh', transform: 'translateZ(0)' }}>
       {/* ── Video Background ─────────────────────────────────────── */}
       <div
         style={{
@@ -44,6 +41,8 @@ const Hero = () => {
           width: '100%',
           height: '100%',
           zIndex: 0,
+          willChange: 'transform',
+          transform: 'translateZ(0)'
         }}
       >
         <video
@@ -55,7 +54,7 @@ const Hero = () => {
           preload="none"
           poster="/hero-poster.jpg"
           className="w-full h-full object-cover"
-          style={{ opacity: 0, transition: 'opacity 1.5s ease-in' }}
+          style={{ opacity: 0, transition: 'opacity 1s ease-in', transform: 'translateZ(0)' }}
           onCanPlay={(e) => { e.currentTarget.style.opacity = 1; }}
         >
           <track kind="captions" srcLang="en" label="English" src="data:text/vtt,WEBVTT" default />
@@ -68,7 +67,8 @@ const Hero = () => {
         style={{
           zIndex: 1,
           background:
-            'linear-gradient(to bottom, rgba(249,247,243,0.2) 0%, rgba(249,247,243,0.0) 15%, rgba(249,247,243,0.0) 85%, rgba(249,247,243,0.2) 100%)',
+            'linear-gradient(to bottom, rgba(249,247,243,0.1) 0%, transparent 15%, transparent 85%, rgba(249,247,243,0.1) 100%)',
+          transform: 'translateZ(0)'
         }}
       />
 
@@ -86,23 +86,19 @@ const Hero = () => {
           paddingTop: '7rem',
           paddingBottom: '10rem',
           minHeight: '100vh',
+          transform: 'translateZ(0)'
         }}
       >
         <div
           className="animate-rise"
           style={{
-            // background: 'rgba(255, 255, 255, 0)',
-            // backdropFilter: 'blur(12px)',
-            // WebkitBackdropFilter: 'blur(12px)',
-            // border: '1px solid rgba(255, 255, 255, 0.4)',
-            // borderRadius: '24px',
             padding: '2rem 3rem',
             marginTop: '0.5vh',
             maxWidth: 'fit-content',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.05)',
+            transform: 'translateZ(0)'
           }}
         >
           {/* Headline */}
@@ -123,20 +119,20 @@ const Hero = () => {
             </em>
           </h1>
           <h2
-          className="animate-fade-rise-delay"
-          style={{
-            fontFamily: '"Inter", sans-serif',
-            fontSize: '0.65rem',
-            letterSpacing: '0.18em',
-            fontWeight: '800',
-            textTransform: 'uppercase',
-            color: '#333',
-            marginTop: '1.5rem',
-            padding: '0 10px',
-          }}
-        >
-          From plastic waste to eco friendly Bamboo &amp; Sustainable products
-        </h2>
+            className="animate-fade-rise-delay"
+            style={{
+              fontFamily: '"Inter", sans-serif',
+              fontSize: '0.65rem',
+              letterSpacing: '0.18em',
+              fontWeight: '800',
+              textTransform: 'uppercase',
+              color: '#333',
+              marginTop: '1.5rem',
+              padding: '0 10px',
+            }}
+          >
+            From plastic waste to eco friendly Bamboo &amp; Sustainable products
+          </h2>
         </div>
         {/* CTA Button */}
         <a href="https://wa.me/918800799151?text=Hi%20Sapling%20%26%20Seeds,%20I%20want%20to%20claim%20my%20free%20gift!" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
@@ -153,9 +149,10 @@ const Hero = () => {
               cursor: 'pointer',
               marginTop: 'clamp(2rem, 10vh, 15rem)',
               transition: 'transform 0.2s',
+              transform: 'translateZ(0)'
             }}
-            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.03)')}
-            onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.03) translateZ(0)')}
+            onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1) translateZ(0)')}
           >
             Claim Your Gift
           </button>
