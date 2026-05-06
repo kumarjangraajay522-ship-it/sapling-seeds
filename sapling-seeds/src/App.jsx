@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import SmoothScroll from './components/SmoothScroll';
 import GlobalGraphics from './components/GlobalGraphics';
 
+
 // Decorative — lazy so they don't block the initial paint
 const LeafCursor = lazy(() => import('./components/LeafCursor'));
 const BambooBuddy = lazy(() => import('./components/BambooBuddy'));
@@ -84,6 +85,7 @@ const AppContent = () => {
                 <LeafCursor />
                 {!isLoginPage && <DeferredBambooBuddy />}
                 <GlobalGraphics />
+
             </Suspense>
             <ScrollToHash />
             <Suspense fallback={<PageFallback />}>
