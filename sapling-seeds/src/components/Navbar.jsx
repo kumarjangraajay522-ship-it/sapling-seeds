@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { assets } from '../assets/assets';
+import logo from '../assets/logo.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -80,7 +80,7 @@ const Navbar = () => {
         <div className="nav-container">
           <Link to="/" className="nav-logo-link" aria-label="Home">
             <img 
-              src={assets.logo} 
+              src={logo} 
               alt="Sapling & Seeds Logo" 
               className="nav-logo-img" 
               width="46" 
@@ -167,7 +167,7 @@ const Navbar = () => {
 
       <div className={`mobile-menu-overlay${mobileMenuOpen ? ' is-open' : ''}`} aria-hidden={!mobileMenuOpen}>
         <div className="mobile-menu-header">
-          <img src={assets.logo} alt="Logo" className="mobile-logo" />
+          <img src={logo} alt="Logo" className="mobile-logo" />
           <button className="close-menu-btn" onClick={closeMenu} aria-label="Close menu">✕</button>
         </div>
         <ul className="mobile-nav-links">
