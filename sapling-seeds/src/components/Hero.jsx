@@ -20,7 +20,7 @@ const Hero = () => {
     // Defer video loading until browser is idle — prevents video from competing
     // with critical JS/CSS on first load, which was the primary cause of TTI ~10s
     const startVideo = () => {
-      video.play().catch(() => {});
+      video.play().catch(() => { });
     };
     if ('requestIdleCallback' in window) {
       const id = requestIdleCallback(startVideo, { timeout: 1500 });
@@ -32,6 +32,7 @@ const Hero = () => {
 
   return (
     <div className="relative w-full" style={{ isolation: 'isolate', backgroundColor: '#F9F7F3', overflow: 'hidden', minHeight: '100vh', transform: 'translateZ(0)' }}>
+
       {/* ── Video Background ─────────────────────────────────────── */}
       <div
         style={{
@@ -82,9 +83,9 @@ const Hero = () => {
           alignItems: 'center',
           justifyContent: 'center',
           textAlign: 'center',
-          padding: '0 1.5rem',
-          paddingTop: '7rem',
-          paddingBottom: '10rem',
+          padding: '0 1.25rem',
+          paddingTop: '6rem',
+          paddingBottom: '8rem',
           minHeight: '100vh',
           transform: 'translateZ(0)'
         }}
@@ -92,7 +93,7 @@ const Hero = () => {
         <div
           className="animate-rise"
           style={{
-            padding: '2rem 3rem',
+            padding: '1.5rem 2rem',
             marginTop: '0.5vh',
             maxWidth: 'fit-content',
             display: 'flex',
@@ -104,9 +105,9 @@ const Hero = () => {
           {/* Headline */}
           <h1
             style={{
-              fontSize: 'clamp(1.8rem, 8vw, 5rem)',
-              fontWeight: 700,
-              lineHeight: 1.1,
+              fontSize: 'clamp(1.8rem, 9vw, 5rem)',
+              fontWeight: 800,
+              lineHeight: 1.05,
               letterSpacing: '-1.5px',
               color: '#000000',
               margin: 0,
@@ -114,7 +115,7 @@ const Hero = () => {
             }}
           >
             <span style={{ color: '#0056b3' }}>This</span> <span style={{ color: '#0056b3' }}>is the Earth</span>{' '}
-            <em style={{ color: '#025819ff' }}>
+            <em style={{ color: '#025819ff', fontStyle: 'normal' }}>
               We Can Restore.
             </em>
           </h1>
@@ -122,7 +123,7 @@ const Hero = () => {
             className="animate-fade-rise-delay"
             style={{
               fontFamily: '"Inter", sans-serif',
-              fontSize: '0.65rem',
+              fontSize: 'clamp(0.6rem, 2vw, 0.72rem)',
               letterSpacing: '0.18em',
               fontWeight: '800',
               textTransform: 'uppercase',
@@ -144,14 +145,15 @@ const Hero = () => {
               backgroundColor: '#04572bff',
               color: '#FFFFFF',
               borderRadius: '9999px',
-              padding: '1.25rem 3.5rem',
+              padding: '1.1rem 3rem',
               border: 'none',
               cursor: 'pointer',
-              marginTop: 'clamp(2rem, 10vh, 15rem)',
+              marginTop: 'clamp(1.5rem, 6vh, 8rem)',
               transition: 'transform 0.2s',
-              transform: 'translateZ(0)'
+              transform: 'translateZ(0)',
+              boxShadow: '0 10px 30px rgba(4, 87, 43, 0.3)'
             }}
-            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.03) translateZ(0)')}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05) translateZ(0)')}
             onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1) translateZ(0)')}
           >
             Claim Your Gift
