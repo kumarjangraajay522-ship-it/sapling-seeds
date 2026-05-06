@@ -79,7 +79,16 @@ const Navbar = () => {
       <nav className={`main-navbar ${isScrolled ? 'scrolled' : ''} ${onDark ? 'nav-on-dark' : 'nav-on-light'}`}>
         <div className="nav-container">
           <Link to="/" className="nav-logo-link" aria-label="Home">
-            <img src={assets.logo} alt="Sapling & Seeds Logo" className="nav-logo-img" width="46" height="46" />
+            <img 
+              src={assets.logo} 
+              alt="Sapling & Seeds Logo" 
+              className="nav-logo-img" 
+              width="46" 
+              height="46" 
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+            />
           </Link>
           <ul className="nav-links-list">
             {navItems.map((item) => (

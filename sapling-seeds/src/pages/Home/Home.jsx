@@ -59,7 +59,9 @@ const Home = () => {
                 <span className="block mt-2">Designed to reduce waste and replace plastic in your daily life.</span>
               </p>
             </div>
-            <CourseCard course={ECO_STARTER_KIT} />
+            <Suspense fallback={<div style={{ height: '300px' }}>Loading...</div>}>
+              <CourseCard course={ECO_STARTER_KIT} />
+            </Suspense>
           </div>
         </section>
 

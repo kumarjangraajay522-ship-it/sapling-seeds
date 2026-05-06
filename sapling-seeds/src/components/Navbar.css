@@ -133,7 +133,7 @@
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     font-size: 14px;
-    color: #2e7d32;
+    color: #5D3A1A;
     letter-spacing: 0.5px;
     cursor: pointer;
     text-decoration: none !important;
@@ -162,7 +162,7 @@
     left: 16px;
     right: 16px;
     height: 3px;
-    background: #2e7d32;
+    background: #5D3A1A;
     border-radius: 2px;
     z-index: -1;
     transform-origin: left center;
@@ -209,7 +209,7 @@
 .cart-icon-svg {
     width: 22px;
     height: 22px;
-    stroke: #2e7d32;
+    stroke: #5D3A1A;
     transition: stroke 0.35s ease;
 }
 
@@ -246,7 +246,7 @@
 .user-name-badge {
     display: flex;
     align-items: center;
-    background: #2e7d32;
+    background: #5D3A1A;
     border: none;
     border-radius: 50px;
     padding: 7px 20px 7px 7px;
@@ -295,7 +295,7 @@
 
 .login-nav-btn:hover,
 .user-name-badge:hover {
-    background: #1b5e20;
+    background: #422D1A;
     transform: translateY(-1px);
     box-shadow: 0 6px 22px rgba(46, 125, 50, 0.38);
 }
