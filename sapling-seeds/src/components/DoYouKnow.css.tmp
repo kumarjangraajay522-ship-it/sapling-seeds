@@ -1,0 +1,32 @@
+/* Fonts loaded globally via index.html preload — no @import needed here */
+
+:root {
+  --accent-green: #056b04;
+  --accent-red: #d64747;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --text-main: #1a241a;
+  --text-muted: #4a5a4a;
+}
+
+.dyk-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-main);
+  padding-bottom: 20px;
+  isolation: isolate;
+}
+
+@media (max-width: 768px) {
+  .dyk-container {
+    margin-top: 50px !important;
+    padding-bottom: 100px;
+  }
+}

@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 1000px;
   min-height: 520px;
-  background: #ddccb8ff;
+  background: var(--color-bg);
   border-radius: 40px;
   border: 1px solid #898780ff;
   box-shadow:

@@ -13,7 +13,7 @@
 /* MAIN CARD */
 .framer-main-card {
   display: flex;
-  background: #ddccb8ff;
+  background: var(--color-bg);
   border-radius: 40px;
   min-height: 550px;
   overflow: hidden;

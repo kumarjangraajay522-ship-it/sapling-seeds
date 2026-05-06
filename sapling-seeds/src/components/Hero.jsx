@@ -105,7 +105,7 @@ const Hero = () => {
           textAlign: 'center',
           padding: '0 1.25rem',
           paddingTop: '6rem',
-          paddingBottom: '8rem',
+          paddingBottom: '4rem',
           minHeight: '100vh',
           transform: 'translateZ(0)'
         }}
