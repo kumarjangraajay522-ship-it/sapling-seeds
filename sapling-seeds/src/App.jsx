@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AuthProvider } from './context/AuthContext';
 import { ShopProvider } from './context/ShopContext';
 import { CartProvider } from './context/CartContext';
+import { MotionConfig } from 'framer-motion';
+
+const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
 // Navigation (always needed, not lazy)
 import Navbar from './components/Navbar';
@@ -108,7 +111,9 @@ const AppContent = () => {
 const App = () => {
     return (
         <SmoothScroll>
-            <AppContent />
+            <MotionConfig transition={isMobile ? { duration: 0.1 } : undefined}>
+                <AppContent />
+            </MotionConfig>
         </SmoothScroll>
     );
 };
