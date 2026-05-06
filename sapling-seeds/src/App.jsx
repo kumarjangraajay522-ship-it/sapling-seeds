@@ -32,6 +32,16 @@ const ShippingPolicy = lazy(() => import('./pages/Policy/ShippingPolicy'));
 const ReturnsPolicy = lazy(() => import('./pages/Policy/ReturnsPolicy'));
 const TermsAndConditions = lazy(() => import('./pages/Policy/TermsAndConditions'));
 
+const DeferredBambooBuddy = () => {
+    const [show, setShow] = React.useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => setShow(true), 5000);
+        return () => clearTimeout(timer);
+    }, []);
+    if (!show) return null;
+    return <BambooBuddy />;
+};
+
 const PageFallback = () => (
     <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ color: '#2d7a4a', fontSize: '1rem' }}>Loading…</span>
@@ -68,7 +78,7 @@ const AppContent = () => {
             {!isLoginPage && <Navbar />}
             <Suspense fallback={null}>
                 <LeafCursor />
-                {!isLoginPage && <BambooBuddy />}
+                {!isLoginPage && <DeferredBambooBuddy />}
                 <GlobalGraphics />
             </Suspense>
             <ScrollToHash />
