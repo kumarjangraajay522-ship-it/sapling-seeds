@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './EcoThoughtGate.css';
 
 const THOUGHTS = [
-    "The greatest threat to our planet is the belief that someone else will save it. 🌍",
-    "Small swaps, big impact. Every bamboo toothbrush counts. 🌱",
-    "Sustainability is not a goal, it's a lifestyle. 🌿",
-    "Choose earth-friendly today for a greener tomorrow. ✨",
-    "Nurture nature, and nature will nurture you. 🍃"
+    {
+        title: "Premium Eco-Friendly Bamboo & Sustainable Products",
+        subtitle: "Bamboo Toothbrushes, Neem Wood Combs & Plantable Stationery"
+    }
 ];
 
 const EcoThoughtGate = ({ children }) => {
@@ -27,7 +26,8 @@ const EcoThoughtGate = ({ children }) => {
         <div className="thought-gate-overlay">
             <div className="thought-gate-content">
                 <div className="thought-icon">🌿</div>
-                <h2 className="thought-text">{thought}</h2>
+                <h2 className="thought-text">{thought.title}</h2>
+                <p className="thought-subtext">{thought.subtitle}</p>
                 <button className="thought-enter-btn" onClick={handleEnter}>
                     Enter Website →
                 </button>

@@ -34,6 +34,14 @@
     font-weight: 600;
 }
 
+.thought-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #5a7a62;
+    margin-top: -0.5rem;
+    max-width: 80%;
+}
+
 .thought-enter-btn {
     margin-top: 1rem;
     background-color: #04572bff;

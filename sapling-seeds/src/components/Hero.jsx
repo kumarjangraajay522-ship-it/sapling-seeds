@@ -181,7 +181,7 @@ const Hero = () => {
             </button>
           </a>
         ) : (
-          <Link to="/collection" style={{ textDecoration: 'none' }}>
+          <Link to="/login" style={{ textDecoration: 'none' }}>
             <button
               className="animate-fade-rise-delay-2"
               style={{
