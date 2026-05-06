@@ -156,29 +156,55 @@ const Hero = () => {
           </h2>
         </div>
         {/* CTA Button */}
-        <a href="https://wa.me/918800799151?text=Hi%20Sapling%20%26%20Seeds,%20I%20want%20to%20claim%20my%20free%20gift!" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-          <button
-            className="animate-fade-rise-delay-2"
-            style={{
-              fontFamily: '"Inter", sans-serif',
-              fontSize: '1rem',
-              backgroundColor: '#04572bff',
-              color: '#FFFFFF',
-              borderRadius: '9999px',
-              padding: '1.1rem 3rem',
-              border: 'none',
-              cursor: 'pointer',
-              marginTop: 'clamp(1.5rem, 6vh, 8rem)',
-              transition: 'transform 0.2s',
-              transform: 'translateZ(0)',
-              boxShadow: '0 10px 30px rgba(4, 87, 43, 0.3)'
-            }}
-            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05) translateZ(0)')}
-            onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1) translateZ(0)')}
-          >
-            Claim Your Gift
-          </button>
-        </a>
+        {user ? (
+          <a href="https://wa.me/918800799151?text=Hi%20Sapling%20%26%20Seeds,%20I%20want%20to%20claim%20my%20free%20gift!" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+            <button
+              className="animate-fade-rise-delay-2"
+              style={{
+                fontFamily: '"Inter", sans-serif',
+                fontSize: '1rem',
+                backgroundColor: '#04572bff',
+                color: '#FFFFFF',
+                borderRadius: '9999px',
+                padding: '1.1rem 3rem',
+                border: 'none',
+                cursor: 'pointer',
+                marginTop: 'clamp(1.5rem, 6vh, 8rem)',
+                transition: 'transform 0.2s',
+                transform: 'translateZ(0)',
+                boxShadow: '0 10px 30px rgba(4, 87, 43, 0.3)'
+              }}
+              onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05) translateZ(0)')}
+              onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1) translateZ(0)')}
+            >
+              Claim Your Gift
+            </button>
+          </a>
+        ) : (
+          <Link to="/collection" style={{ textDecoration: 'none' }}>
+            <button
+              className="animate-fade-rise-delay-2"
+              style={{
+                fontFamily: '"Inter", sans-serif',
+                fontSize: '1rem',
+                backgroundColor: '#5D3A1A',
+                color: '#FFFFFF',
+                borderRadius: '9999px',
+                padding: '1.1rem 3rem',
+                border: 'none',
+                cursor: 'pointer',
+                marginTop: 'clamp(1.5rem, 6vh, 8rem)',
+                transition: 'transform 0.2s',
+                transform: 'translateZ(0)',
+                boxShadow: '0 10px 30px rgba(93, 58, 26, 0.3)'
+              }}
+              onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05) translateZ(0)')}
+              onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1) translateZ(0)')}
+            >
+              Get Started →
+            </button>
+          </Link>
+        )}
       </section>
     </div>
   );
