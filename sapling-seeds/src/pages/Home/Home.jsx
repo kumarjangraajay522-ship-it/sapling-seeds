@@ -28,49 +28,55 @@ const Home = () => {
       {/* Section 1: Hero & Essential Intro */}
       <Hero />
 
-      <Suspense fallback={<div style={{ height: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading...</div>}>
+      <Suspense fallback={<div style={{ height: '600px', background: '#F9F7F3' }} />}>
         <DoYouKnow />
+      </Suspense>
 
-        {/* Premium Course Highlight Section */}
+      <Suspense fallback={<div style={{ height: '800px', background: '#F9F7F3' }} />}>
         <CollectionHero />
+      </Suspense>
 
-        {/* NEW: What We Sell Section */}
+      <Suspense fallback={<div style={{ height: '700px', background: '#F9F7F3' }} />}>
         <WhatWeSell />
+      </Suspense>
 
-        {/* NEW: Better Choice Section */}
+      <Suspense fallback={<div style={{ height: '600px', background: '#F9F7F3' }} />}>
         <BetterChoice />
+      </Suspense>
 
-        <section className="py-12 md:py-20 bg-[#ddccb8] overflow-hidden relative">
-          {/* Subtle background gradient accent */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#898780]/20 rounded-full -mr-48 -mt-48 pointer-events-none blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-100/10 rounded-full -ml-40 -mb-40 pointer-events-none blur-3xl"></div>
+      <section className="py-12 md:py-20 bg-[#ddccb8] overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#898780]/20 rounded-full -mr-48 -mt-48 pointer-events-none blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-100/10 rounded-full -ml-40 -mb-40 pointer-events-none blur-3xl"></div>
 
-          <div className="container mx-auto px-4 relative z-10" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className="flex flex-col items-center text-center mb-12 md:mb-20 px-4 md:px-0" style={{ width: '100%', textAlign: 'center' }}>
-              <div className="inline-block mb-4">
-                <span className="text-xs md:text-base font-semibold text-[#4caf50] uppercase tracking-widest bg-[#ddccb8]/10 px-4 py-1.5 rounded-full border border-[#898780]/30" style={{ color: 'darkgreen' }}>Starter Collection</span>
-              </div>
-              <h2 className="font-serif text-[#1a241a] mb-6 leading-tight px-2 text-center" style={{ width: '100%', color: 'darkgreen', fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>Start Your Eco Journey</h2>
-              <div className="flex justify-center mb-8">
-                <div className="w-20 h-1.5 bg-gradient-to-r from-transparent via-[#4caf50] to-transparent rounded-full opacity-60"></div>
-              </div>
-              <p className="text-base md:text-xl text-gray-900 max-w-3xl mx-auto font-light leading-relaxed px-4 text-center" style={{ color: 'darkgreen' }}>
-                Kickstart your sustainable journey with thoughtfully curated essentials.
-                <span className="block mt-2">Designed to reduce waste and replace plastic in your daily life.</span>
-              </p>
+        <div className="container mx-auto px-4 relative z-10" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="flex flex-col items-center text-center mb-12 md:mb-20 px-4 md:px-0" style={{ width: '100%', textAlign: 'center' }}>
+            <div className="inline-block mb-4">
+              <span className="text-xs md:text-base font-semibold text-[#4caf50] uppercase tracking-widest bg-[#ddccb8]/10 px-4 py-1.5 rounded-full border border-[#898780]/30" style={{ color: 'darkgreen' }}>Starter Collection</span>
             </div>
-            <Suspense fallback={<div style={{ height: '300px' }}>Loading...</div>}>
-              <CourseCard course={ECO_STARTER_KIT} />
-            </Suspense>
+            <h2 className="font-serif text-[#1a241a] mb-6 leading-tight px-2 text-center" style={{ width: '100%', color: 'darkgreen', fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>Start Your Eco Journey</h2>
+            <div className="flex justify-center mb-8">
+              <div className="w-20 h-1.5 bg-gradient-to-r from-transparent via-[#4caf50] to-transparent rounded-full opacity-60"></div>
+            </div>
+            <p className="text-base md:text-xl text-gray-900 max-w-3xl mx-auto font-light leading-relaxed px-4 text-center" style={{ color: 'darkgreen' }}>
+              Kickstart your sustainable journey with thoughtfully curated essentials.
+              <span className="block mt-2">Designed to reduce waste and replace plastic in your daily life.</span>
+            </p>
           </div>
-        </section>
+          <Suspense fallback={<div style={{ height: '500px' }} />}>
+            <CourseCard course={ECO_STARTER_KIT} />
+          </Suspense>
+        </div>
+      </section>
 
-        {/* <CollectionHero /> */}
+      <Suspense fallback={<div style={{ height: '600px' }} />}>
         <WhyBamboo />
+      </Suspense>
 
-        {/* NEW: Trust Signals Section */}
+      <Suspense fallback={<div style={{ height: '400px' }} />}>
         <TrustSignals />
+      </Suspense>
 
+      <Suspense fallback={<div style={{ height: '300px' }} />}>
         <OurClients />
       </Suspense>
     </div>

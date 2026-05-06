@@ -29,6 +29,9 @@ const CourseCard = ({ course }) => {
   const imgScale = useTransform(isHovered ? mouseXSpring : x, [-0.5, 0.5], [1.1, 1.15]);
 
   const handleMouseMove = (e) => {
+    // Disable 3D effects on mobile/touch to save CPU/Performance
+    if (window.innerWidth <= 768) return;
+
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     

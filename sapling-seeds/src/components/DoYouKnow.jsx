@@ -16,9 +16,11 @@ const DidYouKnow = () => {
     visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 60, damping: 15 } }
   };
 
-  // Add a simple animation for the toothbrush image itself
+  // Disable infinite animations on mobile to save CPU/Performance
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   const toothbrushVariants = {
-    animate: {
+    animate: isMobile ? {} : {
       rotate: [0, -5, 5, 0], // Subtle back-and-forth tilt
       y: [0, -10, 10, 0], // Subtle up-and-down movement
       transition: {
@@ -29,6 +31,23 @@ const DidYouKnow = () => {
     },
   };
 
+  const leafVariants = {
+    animate: isMobile ? {} : {
+      y: [0, -25, 0],
+      rotate: [0, 8, -8, 0],
+      transition: { duration: 7, repeat: Infinity, ease: 'easeInOut' }
+    }
+  };
+
+  const leafBVariants = {
+    animate: isMobile ? {} : {
+      y: [0, 35, 0],
+      x: [0, -15, 0],
+      rotate: [0, -12, 6, 0],
+      transition: { duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }
+    }
+  };
+
   return (
     <section className="dyk-container">
       {/* Background ambient glow and giant quotes */}
@@ -37,8 +56,8 @@ const DidYouKnow = () => {
       <div className="dyk-bg-quote dyk-quote-right">"</div>
 
       {/* Floating Leaves */}
-      <motion.div className="floating-leaf leaf-a" animate={{ y: [0, -25, 0], rotate: [0, 8, -8, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>🍃</motion.div>
-      <motion.div className="floating-leaf leaf-b" animate={{ y: [0, 35, 0], x: [0, -15, 0], rotate: [0, -12, 6, 0] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }}>🌿</motion.div>
+      <motion.div className="floating-leaf leaf-a" variants={leafVariants} animate="animate">🍃</motion.div>
+      <motion.div className="floating-leaf leaf-b" variants={leafBVariants} animate="animate">🌿</motion.div>
 
       <motion.div
         className="dyk-content"
