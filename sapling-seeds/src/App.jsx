@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { ShopProvider } from './context/ShopContext';
 import { CartProvider } from './context/CartContext';
 import { MotionConfig } from 'framer-motion';
@@ -51,6 +51,20 @@ const PageFallback = () => (
     </div>
 );
 
+// Protected Route Wrapper
+const ProtectedGate = ({ children }) => {
+    const { isAuthenticated } = useAuth();
+    const location = useLocation();
+
+    if (!isAuthenticated) {
+        // Redirect them to the /login page, but save the current location they were
+        // trying to go to when they were redirected.
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
+
+    return children;
+};
+
 // New Component to handle smooth scrolling to hashes across routes
 const ScrollToHash = () => {
     const { hash, pathname } = useLocation();
@@ -73,37 +87,48 @@ const ScrollToHash = () => {
 
 const AppContent = () => {
     const location = useLocation();
+    const { isAuthenticated } = useAuth();
+    
     // Dynamically show/hide Navbar and Footer based on route
     const isLoginPage = location.pathname === '/login';
 
     return (
         <div className='w-full' style={{ overflow: 'clip', minHeight: '100vh', position: 'relative' }}>
-            {!isLoginPage && <Navbar />}
+            {(!isLoginPage && isAuthenticated) && <Navbar />}
             <Suspense fallback={null}>
-                <LeafCursor />
-                {!isLoginPage && <DeferredBambooBuddy />}
-                <GlobalGraphics />
+                {isAuthenticated && <LeafCursor />}
+                {(!isLoginPage && isAuthenticated) && <DeferredBambooBuddy />}
+                {isAuthenticated && <GlobalGraphics />}
             </Suspense>
             <ScrollToHash />
             <Suspense fallback={<PageFallback />}>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/collection" element={<Collection />} />
-                    <Route path="/gifting" element={<Gifting />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/cart" element={<Cart />} />
+                    {/* Public Routes */}
                     <Route path="/login" element={<Login />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/orders" element={<Orders />} />
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                    <Route path="/shipping-policy" element={<ShippingPolicy />} />
-                    <Route path="/returns-policy" element={<ReturnsPolicy />} />
-                    <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+
+                    {/* Protected Routes */}
+                    <Route path="/" element={<ProtectedGate><Home /></ProtectedGate>} />
+                    <Route path="/home" element={<ProtectedGate><Home /></ProtectedGate>} />
+                    <Route path="/about" element={<ProtectedGate><About /></ProtectedGate>} />
+                    <Route path="/collection" element={<ProtectedGate><Collection /></ProtectedGate>} />
+                    <Route path="/gifting" element={<ProtectedGate><Gifting /></ProtectedGate>} />
+                    <Route path="/contact" element={<ProtectedGate><Contact /></ProtectedGate>} />
+                    <Route path="/cart" element={<ProtectedGate><Cart /></ProtectedGate>} />
+                    <Route path="/profile" element={<ProtectedGate><Profile /></ProtectedGate>} />
+                    <Route path="/orders" element={<ProtectedGate><Orders /></ProtectedGate>} />
+                    <Route path="/product/:id" element={<ProtectedGate><Product /></ProtectedGate>} />
+                    
+                    {/* Policies can be public or protected, making them protected for now per request */}
+                    <Route path="/privacy-policy" element={<ProtectedGate><PrivacyPolicy /></ProtectedGate>} />
+                    <Route path="/shipping-policy" element={<ProtectedGate><ShippingPolicy /></ProtectedGate>} />
+                    <Route path="/returns-policy" element={<ProtectedGate><ReturnsPolicy /></ProtectedGate>} />
+                    <Route path="/terms-and-conditions" element={<ProtectedGate><TermsAndConditions /></ProtectedGate>} />
+                    
+                    {/* Fallback */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </Suspense>
-            {!isLoginPage && <Footer />}
+            {(!isLoginPage && isAuthenticated) && <Footer />}
         </div>
     );
 };

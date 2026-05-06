@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="C:\Users\HP\Downloads\sapling-seeds-react\sapling-seeds\src\assets\logo.png" />
+  <link rel="icon" type="image/png"
+    href="C:\Users\HP\Downloads\sapling-seeds-react\sapling-seeds\src\assets\logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Primary SEO Meta Tags -->
@@ -227,16 +228,37 @@
   <div id="root">
     <style>
       @keyframes ss-spin {
-        to { transform: rotate(360deg); }
+        to {
+          transform: rotate(360deg);
+        }
       }
+
       @keyframes ss-leaf-bounce {
-        0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
-        50% { transform: translateY(-10px) scale(1.08); opacity: 0.85; }
+
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+
+        50% {
+          transform: translateY(-10px) scale(1.08);
+          opacity: 0.85;
+        }
       }
+
       @keyframes ss-fade-in {
-        from { opacity: 0; transform: translateY(12px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
+
       #ss-splash {
         background: #F9F7F3;
         min-height: 100vh;
@@ -247,12 +269,14 @@
         font-family: 'Nunito', 'DM Sans', sans-serif;
         animation: ss-fade-in 0.5s ease both;
       }
+
       #ss-leaf {
         font-size: 3.2rem;
         animation: ss-leaf-bounce 1.6s ease-in-out infinite;
         margin-bottom: 1rem;
         line-height: 1;
       }
+
       #ss-brand {
         font-size: 1.55rem;
         font-weight: 800;
@@ -260,6 +284,7 @@
         letter-spacing: 0.01em;
         margin-bottom: 0.3rem;
       }
+
       #ss-tag {
         font-size: 0.78rem;
         color: #5a7a62;
@@ -267,6 +292,7 @@
         text-transform: uppercase;
         margin-bottom: 2rem;
       }
+
       #ss-ring {
         width: 36px;
         height: 36px;
@@ -284,6 +310,6 @@
     </div>
   </div>
   <script type="module" src="/src/main.jsx"></script>
-</body>
+  </body>
 
 </html>

@@ -839,7 +839,7 @@ const AdminDashboard = ({ onLogout }) => {
                   <div className="section-title">RETURN ADDRESS</div>
                   <p>Sapling & Seeds (Shanah Enterprises)</p>
                   <p>Faridabad, Haryana - 121001</p>
-                  <p>Contact: 9354361055</p>
+                  <p>Contact: 8800799151</p>
                 </div>
                 <div className="label-barcode">
                   <div className="barcode-placeholder">
