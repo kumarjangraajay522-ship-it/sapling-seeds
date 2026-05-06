@@ -519,7 +519,7 @@ const BambooBuddy = () => {
       setCallbackForm(false);
       setChat(c => [...c, { from: 'buddy', text: `✅ Got it, ${name}! Our team will call you at ${phone} shortly. Thank you for reaching out! 🌿` }]);
     } catch {
-      setChat(c => [...c, { from: 'buddy', text: `📲 Please WhatsApp us directly at +91 93543 61055 and we'll arrange a callback right away!` }]);
+      setChat(c => [...c, { from: 'buddy', text: `📲 Please WhatsApp us directly at +91 88007 99151 and we'll arrange a callback right away!` }]);
     } finally {
       setCallbackLoading(false);
     }
@@ -604,7 +604,7 @@ const BambooBuddy = () => {
                   {m.type === 'callback_offer' && i === chat.length - 1 && !callbackSent && (
                     <div className="sp-callback-actions">
                       <a
-                        href="https://wa.me/919354361055?text=Hi%20Sapling%20%26%20Seeds,%20I%20need%20help%20selecting%20products!"
+                        href="https://wa.me/918800799151?text=Hi%20Sapling%20%26%20Seeds,%20I%20need%20help%20selecting%20products!"
                         target="_blank" rel="noopener noreferrer"
                         className="sp-cb-btn sp-cb-wa"
                       >

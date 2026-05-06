@@ -60,7 +60,7 @@ const TermsAndConditions = () => {
                     <div className="grievance-info">
                         <p><strong>Business Name:</strong> Sapling & Seeds</p>
                         <p><strong>Email:</strong> sanchu@saplingandseeds.com</p>
-                        <p><strong>Phone:</strong> +91 9354361055</p>
+                        <p><strong>Phone:</strong> +91 8800799151</p>
                     </div>
                 </div>
             </div>

@@ -15,13 +15,15 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column; /* Stack image and text */
   align-items: center;
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
-  padding: 120px 5%;
+  padding: 80px 5%;
   color: var(--color-text);
-  margin-top: -150px;
+  margin-top: 0;
+  gap: 60px;
 }
 
 /* --- SEAMLESS TEXTURES --- */
@@ -89,16 +91,37 @@
 }
 
 /* --- 3. Content Layout --- */
+.about-hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 450px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(93, 58, 26, 0.2);
+  z-index: 5;
+}
+
+.about-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(93, 58, 26, 0.1));
+}
+
 .about-content-wrapper {
   position: relative;
   z-index: 10;
-  /* Keeps text above the textures */
   max-width: 850px;
-  /* Perfect width for reading */
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* Centering makes it feel like an editorial magazine */
 }
 
 .about-glass-card {
@@ -341,6 +364,11 @@
 
   .about-glass-card {
     padding: 30px 20px;
+  }
+
+  .about-hero-image-wrapper {
+    height: 250px;
+    border-radius: 16px;
   }
 
   /* Left align is better for small screens */

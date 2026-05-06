@@ -86,9 +86,7 @@ const Footer = () => {
         {/* External Copyright Strip */}
         <div className="footer-external-bottom">
           <p>© Sapling &amp; Seeds, {new Date().getFullYear()}. A Shanah Enterprises Brand.</p>
-          <address style={{ fontStyle: 'normal', fontSize: '0.78rem', opacity: 0.7, margin: '0.25rem 0' }}>
-            GSTIN: 06AFCFS0110E1ZR &nbsp;|&nbsp; New Delhi 110001, India &nbsp;|&nbsp; <a href="tel:+919354361055" style={{ color: 'inherit' }}>+91 93543 61055</a>
-          </address>
+            GSTIN: 06AFCFS0110E1ZR &nbsp;|&nbsp; New Delhi 110001, India &nbsp;|&nbsp; <a href="tel:+918800799151" style={{ color: 'inherit' }}>+91 88007 99151</a>
           <p className="made-in">All Rights Reserved</p>
         </div>
       </div>

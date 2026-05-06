@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { assets } from '../assets/assets';
 import './AboutUs.css';
 
 const AboutUs = () => {
@@ -17,7 +18,16 @@ const AboutUs = () => {
 
   return (
     <section className="premium-about-container" id="about-us">
-
+      {/* --- Visual Hero Section --- */}
+      <motion.div 
+        className="about-hero-image-wrapper"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <img src={assets.aboutHero} alt="Premium Bamboo Products" className="about-hero-img" />
+        <div className="about-hero-overlay" />
+      </motion.div>
 
       {/* --- Main Text Content --- */}
       <motion.div

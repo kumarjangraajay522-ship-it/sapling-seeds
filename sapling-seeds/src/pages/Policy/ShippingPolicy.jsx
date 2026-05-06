@@ -34,7 +34,7 @@ const ShippingPolicy = () => {
                     <h3>Shipping Queries</h3>
                     <div className="grievance-info">
                         <p><strong>Email:</strong> sanchu@saplingandseeds.com</p>
-                        <p><strong>Phone:</strong> +91 9354361055</p>
+                        <p><strong>Phone:</strong> +91 8800799151</p>
                     </div>
                 </div>
             </div>

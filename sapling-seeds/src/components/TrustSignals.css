@@ -15,7 +15,7 @@
 
 .ts-badge {
   font-size: 0.9rem;
-  color: #2e7d32;
+  color: #8B5E3C;
   letter-spacing: 2px;
   display: block;
   margin-bottom: 12px;
@@ -23,7 +23,7 @@
 
 .ts-title {
   font-size: 3.5rem;
-  color: #0c2b02;
+  color: #5D3A1A;
   margin-bottom: 16px;
 }
 
@@ -60,7 +60,7 @@
 .ts-value {
   font-size: 3rem;
   font-weight: 900;
-  color: #2e7d32;
+  color: #8B5E3C;
   margin-bottom: 12px;
   line-height: 1;
 }
@@ -93,11 +93,11 @@
   gap: 16px;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #0c2b02;
-  background: rgba(46, 125, 50, 0.05);
+  color: #5D3A1A;
+  background: rgba(139, 94, 60, 0.05);
   padding: 16px 32px;
   border-radius: 50px;
-  border: 1px solid rgba(46, 125, 50, 0.15);
+  border: 1px solid rgba(139, 94, 60, 0.15);
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);

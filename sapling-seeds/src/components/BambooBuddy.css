@@ -46,10 +46,10 @@
 .sp-bubble-inner{display:flex;align-items:flex-start;gap:10px}
 .sp-bubble-icon{font-size:1.35rem;flex-shrink:0;margin-top:1px}
 .sp-bubble-text{display:flex;flex-direction:column;gap:2px}
-.sp-bubble-main{font-size:.82rem;font-weight:800;color:#2a4a1a;margin:0;line-height:1.4}
-.sp-bubble-line{font-size:.75rem;font-weight:600;color:#4a6a30;margin:0;line-height:1.4}
-.sp-bx{position:absolute;top:8px;right:9px;background:none;border:none;color:#aac890;font-size:.8rem;cursor:pointer;line-height:1}
-.sp-bx:hover{color:#4a7a30}
+.sp-bubble-main{font-size:.82rem;font-weight:800;color:#5D3A1A;margin:0;line-height:1.4}
+.sp-bubble-line{font-size:.75rem;font-weight:600;color:#8B5E3C;margin:0;line-height:1.4}
+.sp-bx{position:absolute;top:8px;right:9px;background:none;border:none;color:#8B5E3C;font-size:.8rem;cursor:pointer;line-height:1}
+.sp-bx:hover{color:#5D3A1A}
 
 /* ── CHAT PANEL ── */
 .sp-panel{
@@ -67,9 +67,9 @@
   border-bottom:1.5px solid #d8cab0;
 }
 .sp-hinfo{flex:1}
-.sp-hname{font-size:.95rem;font-weight:800;color:#2a4a1a;display:block}
-.sp-hsub{font-size:.7rem;color:#6a9a50;font-weight:700;display:block}
-.sp-honline{font-size:.65rem;color:#5a8a38;font-weight:700;display:block}
+.sp-hname{font-size:.95rem;font-weight:800;color:#5D3A1A;display:block}
+.sp-hsub{font-size:.7rem;color:#8B5E3C;font-weight:700;display:block}
+.sp-honline{font-size:.65rem;color:#a88a60;font-weight:700;display:block}
 .sp-hclose{
   width:28px;height:28px;border-radius:50%;border:none;
   background:rgba(107,163,104,.18);color:#4a7a30;font-size:.8rem;
@@ -93,11 +93,11 @@
 }
 .sp-qbtn{
   text-align:left;padding:7px 10px;border-radius:10px;
-  border:1.5px solid #c8dab0;background:#fff;color:#2a4a1a;
+  border:1.5px solid #d8cab0;background:#fff;color:#5D3A1A;
   font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;
   cursor:pointer;transition:all .18s;line-height:1.35;
 }
-.sp-qbtn:hover{background:#e8f5e0;border-color:#6ba368;transform:translateY(-1px)}
+.sp-qbtn:hover{background:#fdfaf3;border-color:#8B5E3C;transform:translateY(-1px)}
 
 /* messages */
 .sp-msgs{

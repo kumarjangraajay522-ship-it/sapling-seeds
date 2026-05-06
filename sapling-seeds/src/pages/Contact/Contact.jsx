@@ -50,7 +50,7 @@ const Contact = () => {
         <div className="contact-page-wrapper">
             <SEOHead
                 title="Contact Sapling &amp; Seeds | Enquiries &amp; Corporate Gifting"
-                description="Get in touch with Sapling &amp; Seeds for product enquiries, bulk orders, or corporate bamboo gifting. Call +91 93543 61055 or email enquiry@saplingandseeds.com."
+                description="Get in touch with Sapling &amp; Seeds for product enquiries, bulk orders, or corporate bamboo gifting. Call +91 88007 99151 or email enquiry@saplingandseeds.com."
                 canonical="https://www.saplingandseeds.com/contact"
             />
             {/* Same animated wave background as About page */}
@@ -107,7 +107,6 @@ const Contact = () => {
                                     <h4>Call us</h4>
                                     <p>Mon-Fri from 9am to 6pm.</p>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                        <a href="tel:+919354361055">+91 93543 61055</a>
                                         <a href="tel:+918800799151">+91 88007 99151</a>
                                     </div>
                                 </div>

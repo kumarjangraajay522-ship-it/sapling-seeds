@@ -39,7 +39,7 @@ const ReturnsPolicy = () => {
                     <h3>Need help with a return?</h3>
                     <div className="grievance-info">
                         <p><strong>Email:</strong> enquiry@saplingandseeds.com</p>
-                        <p><strong>WhatsApp:</strong> +91 9354361055</p>
+                        <p><strong>WhatsApp:</strong> +91 8800799151</p>
                     </div>
                 </div>
             </div>

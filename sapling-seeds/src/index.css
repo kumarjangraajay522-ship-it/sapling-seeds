@@ -8,9 +8,10 @@ body {
 }
 
 :root {
-  --color-heading: #303130;
-  --color-text: #303130;
-  --color-accent: #303130;
+  --color-heading: #5D3A1A; /* Deep Brown */
+  --color-text: #422D1A; /* Medium Brown */
+  --color-accent: #8B5E3C; /* Warm Brown */
+  --color-bg: #EEDDCC; /* Light Earth/Beige */
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -25,11 +26,11 @@ h1, h2, h3, h4, h5, h6,
 .section-title,
 [class*="title"],
 [class*="heading"] {
-  color: #303130 !important;
+  color: var(--color-heading) !important;
 }
 
 body {
-  background-color: #d9cab1;
-  color: #303130;
-  /* Default beige/cream */
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  /* Default earthy brown theme */
 }
