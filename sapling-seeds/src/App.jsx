@@ -12,11 +12,11 @@ const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SmoothScroll from './components/SmoothScroll';
+import GlobalGraphics from './components/GlobalGraphics';
 
 // Decorative — lazy so they don't block the initial paint
 const LeafCursor = lazy(() => import('./components/LeafCursor'));
 const BambooBuddy = lazy(() => import('./components/BambooBuddy'));
-const GlobalGraphics = lazy(() => import('./components/GlobalGraphics'));
 
 // Home is the landing page — load eagerly for fast initial paint
 import Home from './pages/Home/Home';

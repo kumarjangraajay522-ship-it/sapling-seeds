@@ -14,9 +14,7 @@ const GlobalGraphics = () => {
         { id: 8, left: '65%',  delay: 15, duration: 24, type: '✨', size: '12px' },
     ];
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
-    if (isMobile) return null;
 
     return (
         <div className="global-graphics-layer">

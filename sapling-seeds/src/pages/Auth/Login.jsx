@@ -18,6 +18,20 @@ const Login = () => {
     const [devHint, setDevHint] = useState('');
     const otpRefs = useRef([]);
     const googleClickedRef = useRef(false);
+    const [googleButtonWidth, setGoogleButtonWidth] = useState(320);
+
+    // Update google button width on resize
+    useEffect(() => {
+        const updateWidth = () => {
+            const width = window.innerWidth;
+            if (width < 380) setGoogleButtonWidth(240);
+            else if (width < 480) setGoogleButtonWidth(280);
+            else setGoogleButtonWidth(320);
+        };
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    }, []);
 
     // Check if we are running on Cloudflare Tunnel (Google OAuth will block this by default)
     const isCloudflareTunnel = typeof window !== 'undefined' && window.location.hostname.includes('trycloudflare.com');
@@ -240,7 +254,7 @@ const Login = () => {
                                     theme="filled_black"
                                     shape="pill"
                                     text="continue_with"
-                                    width="320"
+                                    width={googleButtonWidth}
                                     auto_select={false}
                                 />
                             )}
