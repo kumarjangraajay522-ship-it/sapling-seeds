@@ -108,10 +108,10 @@ const Hero = () => {
           {/* Headline */}
           <h1
             style={{
-              fontSize: 'clamp(2.8rem, 8vw, 6rem)',
-              fontWeight: 600,
-              lineHeight: 0.95,
-              letterSpacing: '-4.46px',
+              fontSize: 'clamp(1.8rem, 8vw, 5rem)',
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: '-1.5px',
               color: '#000000',
               margin: 0,
               textAlign: 'center',
@@ -126,12 +126,13 @@ const Hero = () => {
           className="animate-fade-rise-delay"
           style={{
             fontFamily: '"Inter", sans-serif',
-            fontSize: '0.72rem',
-            letterSpacing: '0.24em',
-            fontWeight: '900',
+            fontSize: '0.65rem',
+            letterSpacing: '0.18em',
+            fontWeight: '800',
             textTransform: 'uppercase',
-            color: '#1e1c1cff',
-            marginTop: '2rem',
+            color: '#333',
+            marginTop: '1.5rem',
+            padding: '0 10px',
           }}
         >
           From plastic waste to eco friendly Bamboo &amp; Sustainable products
