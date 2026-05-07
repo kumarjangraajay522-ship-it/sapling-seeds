@@ -47,6 +47,7 @@ import sanchu from './Sanchu Website.png';
 import pawan from './pawan.png';
 import aboutHero from './about_hero.png';
 import cursor from './cursor.png';
+import about from './ABOUT.png';
 
 export const assets = {
     heroFlatlay,
@@ -98,6 +99,7 @@ export const assets = {
     pawan,
     aboutHero,
     cursor,
+    about
 };
 
 export const getProductImage = (imageStr) => {

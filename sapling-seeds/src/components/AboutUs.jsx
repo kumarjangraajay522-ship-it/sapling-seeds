@@ -25,7 +25,7 @@ const AboutUs = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <img src={assets.aboutHero} alt="Premium Bamboo Products" className="about-hero-img" />
+        <img src={assets.about} alt="Premium Bamboo Products" className="about-hero-img" />
         <div className="about-hero-overlay" />
       </motion.div>
 
