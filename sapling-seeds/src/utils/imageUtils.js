@@ -1,7 +1,7 @@
 import { assets } from '../assets/assets';
 
 const API_URL = import.meta.env.VITE_API_URL || '/api/v1';
-const BASE_URL = API_URL.replace('/api/v1', '');
+const BASE_URL = API_URL.includes('/api') ? API_URL.split('/api')[0] : '';
 
 /**
  * Universal Image Resolver

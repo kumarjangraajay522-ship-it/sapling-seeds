@@ -28,13 +28,7 @@ const Login = () => {
         if (isAuthenticated) navigate('/');
     }, [isAuthenticated, navigate]);
 
-    // Cancel Google One Tap auto-prompt so it never fires without user interaction
-    useEffect(() => {
-        const cancel = () => window.google?.accounts?.id?.cancel();
-        cancel();
-        const t = setTimeout(cancel, 800);
-        return () => clearTimeout(t);
-    }, []);
+
 
     // Handle Input Changes
     const handleInput = (e) => {

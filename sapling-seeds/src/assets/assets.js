@@ -45,7 +45,7 @@ import ajay from './ajay.png';
 import daisy from './Daisy Website.png';
 import sanchu from './Sanchu Website.png';
 import pawan from './pawan.png';
-import aboutHero from './about_hero.png';
+
 import cursor from './cursor.png';
 import about from './ABOUT.png';
 
@@ -97,13 +97,14 @@ export const assets = {
     sanchu,
     ajay,
     pawan,
-    aboutHero,
+
     cursor,
     about
 };
 
 export const getProductImage = (imageStr) => {
-    const API_BASE = (import.meta.env.VITE_API_URL || '/api/v1').replace('/api/v1', '');
+    const API_URL = import.meta.env.VITE_API_URL || '/api/v1';
+    const API_BASE = API_URL.includes('/api') ? API_URL.split('/api')[0] : '';
     const FALLBACK = 'https://images.unsplash.com/photo-1526406915894-7bcd65f60845?q=80&w=800';
     if (!imageStr || typeof imageStr !== 'string') return FALLBACK;
     // Already a key in the assets map
