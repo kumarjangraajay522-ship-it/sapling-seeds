@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Root of the Sapling Seeds monorepo",
   "scripts": {
-    "dev:backend": "set NODE_VERSION=24 && cd backend && npm run dev",
-    "dev:frontend": "set NODE_VERSION=24 && cd sapling-seeds && npm run dev",
-    "dev:admin": "set NODE_VERSION=24 && cd admin-portal && npm run dev",
-    "dev:all": "set NODE_VERSION=24 && npm run dev:backend & npm run dev:frontend",
-    "dev": "set NODE_VERSION=24 && cd backend && npm run dev",
-    "start": "set NODE_VERSION=24 && cd backend && node src/server.js",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd sapling-seeds && npm run dev",
+    "dev:admin": "cd admin-portal && npm run dev",
+    "dev:all": "npm run dev:backend & npm run dev:frontend",
+    "dev": "cd backend && npm run dev",
+    "start": "cd backend && node src/server.js",
+    "prod": "cd backend && node src/server.js",
     "install:all": "npm install && cd backend && npm install && cd ../sapling-seeds && npm install && cd ../admin-portal && npm install"
   },
   "keywords": [
