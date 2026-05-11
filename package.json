@@ -1,0 +1,20 @@
+{
+  "name": "sapling-seeds-root",
+  "version": "1.0.0",
+  "description": "Root of the Sapling Seeds monorepo",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd sapling-seeds && npm run dev",
+    "dev:admin": "cd admin-portal && npm run dev",
+    "dev:all": "start npm run dev:backend & start npm run dev:frontend",
+    "dev": "cd backend && npm run dev",
+    "install:all": "npm install && cd backend && npm install && cd ../sapling-seeds && npm install && cd ../admin-portal && npm install"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC"
+}
