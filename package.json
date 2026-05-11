@@ -6,8 +6,9 @@
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd sapling-seeds && npm run dev",
     "dev:admin": "cd admin-portal && npm run dev",
-    "dev:all": "start npm run dev:backend & start npm run dev:frontend",
+    "dev:all": "npm run dev:backend & npm run dev:frontend",
     "dev": "cd backend && npm run dev",
+    "start": "cd backend && node src/server.js",
     "install:all": "npm install && cd backend && npm install && cd ../sapling-seeds && npm install && cd ../admin-portal && npm install"
   },
   "keywords": [
