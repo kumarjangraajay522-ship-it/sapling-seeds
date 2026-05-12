@@ -6,9 +6,9 @@ import './WhyBamboo.css';
 const steps = [
   { 
     id: 1, 
-    title: 'Share Needs', 
+    title: 'Share Seeds', 
     subtitle: 'Step 01',
-    desc: 'Tell us your needs and team size. We tailor our bamboo options to perfectly match your specific corporate requirements.',
+    desc: 'Share your vision with us. We tailor our sustainable seeds and bamboo options to perfectly match your specific requirements.',
     color: '#E8F5E9'
   },
   { 

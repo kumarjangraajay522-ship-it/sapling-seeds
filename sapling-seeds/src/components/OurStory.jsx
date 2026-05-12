@@ -12,7 +12,7 @@ const OurStory = () => {
       <motion.div className="floating-leaf leaf-b" animate={{ y: [0, 35, 0], x: [0, -15, 0], rotate: [0, -12, 6, 0] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }}>🌿</motion.div>
 
       <motion.div className="story-content-wrapper" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-        <motion.h2 variants={itemVariants} className="premium-story-title">Our Story and team</motion.h2>
+        <motion.h2 variants={itemVariants} className="premium-story-title">Our Story and Team</motion.h2>
         <motion.div variants={itemVariants} className="premium-story-text">
           <p>Founded by Sanchu & Daisy in 2023, <span className="text-highlight">SHANAH ENTERPRISES</span> emerged from a passion for environmental stewardship and a desire to provide eco-friendly alternatives to conventional products. What started as a small initiative has grown into a thriving business, thanks to our commitment to quality, sustainability, and innovation.</p>
         </motion.div>

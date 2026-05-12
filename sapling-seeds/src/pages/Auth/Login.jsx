@@ -167,7 +167,7 @@ const Login = () => {
                     </h1>
                     <p className="auth-subtitle">
                         {step === 1
-                            ? (isLogin ? 'Access your eco-friendly world.' : 'Join the Sapling & Seeds community.')
+                            ? (isLogin ? 'Access your eco-friendly journey.' : 'Join the Sapling & Seeds community.')
                             : `We've sent a code to ${formData.email}`}
                     </p>
                 </header>
@@ -182,6 +182,7 @@ const Login = () => {
                                         type="text" name="name"
                                         value={formData.name} onChange={handleInput}
                                         placeholder="John Doe" required
+                                        autoComplete="name"
                                     />
                                 </div>
                             </div>
@@ -194,6 +195,7 @@ const Login = () => {
                                     type="email" name="email"
                                     value={formData.email} onChange={handleInput}
                                     placeholder="your@email.com" required
+                                    autoComplete="email"
                                 />
                             </div>
                         </div>
@@ -205,6 +207,7 @@ const Login = () => {
                                     type="password" name="password"
                                     value={formData.password} onChange={handleInput}
                                     placeholder="••••••••" required
+                                    autoComplete={isLogin ? "current-password" : "new-password"}
                                 />
                             </div>
                         </div>

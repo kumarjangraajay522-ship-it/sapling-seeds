@@ -13,7 +13,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <GoogleOAuthProvider
           clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || "missing-client-id"}
-          onScriptLoadSuccess={() => window.google?.accounts?.id?.cancel()}
         >
         <ShopProvider>
           <CartProvider>

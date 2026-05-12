@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { assets } from '../assets/assets';
 
 import '../styles/fonts.css';
 import '../styles/theme.css';
@@ -61,7 +62,7 @@ const Hero = () => {
             muted
             playsInline
             preload="none"
-            poster="/hero-poster.jpg"
+            poster={assets.earth}
             className="w-full h-full object-cover"
             style={{ opacity: 0, transition: 'opacity 1s ease-in', transform: 'translateZ(0)' }}
             onCanPlay={(e) => { e.currentTarget.style.opacity = 1; }}
@@ -71,7 +72,7 @@ const Hero = () => {
         ) : (
           /* Use high-res optimized image for mobile to get 90+ speed score */
           <img 
-            src="/hero-poster.jpg" 
+            src={assets.earth} 
             alt="Sapling & Seeds Hero" 
             className="w-full h-full object-cover" 
             loading="eager" 
@@ -152,7 +153,7 @@ const Hero = () => {
               padding: '0 10px',
             }}
           >
-            From plastic waste to eco friendly Bamboo &amp; Sustainable products
+            From plastic waste to eco-friendly Bamboo &amp; Sustainable products
           </h2>
         </div>
         {/* CTA Button */}
