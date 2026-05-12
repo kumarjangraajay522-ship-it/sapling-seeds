@@ -111,9 +111,10 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Serve static files from the React app build
-const frontendDistPath = path.join(__dirname, '../dist');
-app.use(express.static(frontendDistPath));
+// Serve static files
+const publicPath = path.join(__dirname, '../public');
+app.use('/admin', express.static(path.join(publicPath, 'admin')));
+app.use(express.static(path.join(publicPath, 'client')));
 
 // API Routes
 const apiPrefix = process.env.API_PREFIX || '/api/v1';
@@ -147,10 +148,14 @@ app.get(`${apiPrefix}`, (req, res) => {
   });
 });
 
-// Any other request that doesn't match an API route, serve index.html
+// Any other request that doesn't match an API route
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'admin', 'index.html'));
+});
+
 app.get('*', (req, res) => {
-  if (!req.path.startsWith(apiPrefix)) {
-    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  if (!req.path.startsWith(apiPrefix) && !req.path.startsWith('/admin')) {
+    res.sendFile(path.join(publicPath, 'client', 'index.html'));
   }
 });
 

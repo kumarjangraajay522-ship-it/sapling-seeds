@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/admin-portal/',
+  base: '/admin/',
   server: {
     port: 5714,
     strictPort: true,
